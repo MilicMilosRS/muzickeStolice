@@ -11,33 +11,17 @@ namespace muzickeStolice.Controller
     {
         static private List<Osoba> _data = new List<Osoba>();
 
-        static private int GenerateID()
-        {
-            for (int i = 0; ; i++)
-            {
-                bool taken = false;
-                foreach (Osoba b in _data)
-                    if (b.ID == i)
-                    {
-                        taken = true;
-                        break;
-                    }
-                if (!taken)
-                    return i;
-            }
-        }
-
         static public Osoba? Read(int id)
         {
             foreach (Osoba o in _data)
-                if (o.ID == id)
+                if (o.Izvodjac.ID == id)
                     return o;
             return null;
         }
 
         static public Osoba Create(string ime, string prezime, string biografija, DateOnly datumRodjenja)
         {
-            Osoba o = new Osoba(GenerateID(), ime, prezime, biografija, datumRodjenja);
+            Osoba o = new Osoba(IzvodjacController.GenerateID(), ime, prezime, biografija, datumRodjenja);
             _data.Add(o);
             return o;
         }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,16 +7,12 @@ using System.Threading.Tasks;
 
 namespace muzickeStolice.Model
 {
-    public class Bend : IIzvodjac, IOcenljivo
+    public class Bend
     {
         public Bend() { }
 
-        private int id;
-        public int ID
-        {
-            get { return id; }
-            set { id = value; }
-        }
+        public int Id { get { return Izvodjac.ID; } set { Izvodjac.ID = value; } }
+        public Izvodjac Izvodjac{get;set;}
 
         private string naziv;
         public string Naziv
@@ -33,9 +30,9 @@ namespace muzickeStolice.Model
 
         private DateOnly datumOsnivanja;
 
-        public Bend(int id, string naziv, string opis, DateOnly datumOsnivanja)
+        public Bend(Izvodjac iz, string naziv, string opis, DateOnly datumOsnivanja)
         {
-            this.id = id;
+            Izvodjac = iz;
             this.naziv = naziv;
             this.opis = opis;
             this.datumOsnivanja = datumOsnivanja;

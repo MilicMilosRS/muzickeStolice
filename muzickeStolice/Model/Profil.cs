@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,7 +9,15 @@ namespace muzickeStolice.Model
 {
     public class Profil
     {
+        public Profil() { }
+
         private Korisnik korisnik;
+        [Key]
+        public string korisnikEmail
+        {
+            get { return korisnik.Email; }
+            set { }
+        }
         public Korisnik Korisnik
         {
             get { return korisnik; }

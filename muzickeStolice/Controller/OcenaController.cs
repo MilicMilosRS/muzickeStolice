@@ -11,7 +11,7 @@ namespace muzickeStolice.Controller
     {
         static private List<Ocena> _data = new List<Ocena>();
 
-        static public Ocena? Read(string autorEmail, IOcenljivo primalac)
+        static public Ocena? Read(string autorEmail, Ocenljivo primalac)
         {
             foreach (Ocena o in _data)
                 if (o.Autor.Email == autorEmail && o.Primalac == primalac)
@@ -19,7 +19,7 @@ namespace muzickeStolice.Controller
             return null;
         }
 
-        static public Ocena Create(string autorEmail, IOcenljivo primalac, int vrednost)
+        static public Ocena Create(string autorEmail, Ocenljivo primalac, int vrednost)
         {
             Korisnik? k = KorisnikController.Read(autorEmail);
             if (k == null)
@@ -29,7 +29,7 @@ namespace muzickeStolice.Controller
             return o;
         }
 
-        static public void Update(string autorEmail, IOcenljivo primalac, int vrednost)
+        static public void Update(string autorEmail, Ocenljivo primalac, int vrednost)
         {
             Ocena? o = Read(autorEmail, primalac);
             if (o == null)
@@ -37,7 +37,7 @@ namespace muzickeStolice.Controller
             o.Vrednost = vrednost;
         }
 
-        static public void Delete(string autorEmail, IOcenljivo primalac)
+        static public void Delete(string autorEmail, Ocenljivo primalac)
         {
             Ocena? o = Read(autorEmail, primalac);
             if (o == null)

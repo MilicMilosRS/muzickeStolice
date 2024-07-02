@@ -1,17 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace muzickeStolice.Model
 {
+
     public class Korisnik
     {
+        public Korisnik() { }
+
         private string email;
+        [Key]
         public string Email
         {
             get { return email; }
+            set { }
         }
 
         private string korisnickoIme;

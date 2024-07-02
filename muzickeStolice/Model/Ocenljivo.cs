@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace muzickeStolice.Model
 {
-    public interface IIzvodjac
+    public class Ocenljivo
     {
-        void View(IIzvodjacVisitor viewer);
+        public int ID { get; set; }
     }
 }

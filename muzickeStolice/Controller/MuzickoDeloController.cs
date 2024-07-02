@@ -11,33 +11,17 @@ namespace muzickeStolice.Controller
     {
         static private List<MuzickoDelo> _data = new List<MuzickoDelo>();
 
-        static private int GenerateID()
-        {
-            for (int i = 0; ; i++)
-            {
-                bool taken = false;
-                foreach (MuzickoDelo b in _data)
-                    if (b.ID == i)
-                    {
-                        taken = true;
-                        break;
-                    }
-                if (!taken)
-                    return i;
-            }
-        }
-
         static public MuzickoDelo? Read(int id)
         {
             foreach (MuzickoDelo md in _data)
-                if (md.ID == id)
+                if (md.Ocenljivo.ID == id)
                     return md;
             return null;
         }
 
         static public MuzickoDelo Create(string naziv, Zanr zanr, string opis, TipDela tip)
         {
-            MuzickoDelo md = new MuzickoDelo(GenerateID(), naziv, zanr, opis, tip);
+            MuzickoDelo md = new MuzickoDelo(OcenljivoController.GenerateID(), naziv, zanr, opis, tip);
             _data.Add(md);
             return md;
         }

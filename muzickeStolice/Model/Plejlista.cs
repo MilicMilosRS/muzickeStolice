@@ -8,10 +8,13 @@ namespace muzickeStolice.Model
 {
     public class Plejlista
     {
+        public Plejlista() { }
+
         private int id;
         public int ID
         {
             get { return id; }
+            set { }
         }
 
         private Korisnik autor;

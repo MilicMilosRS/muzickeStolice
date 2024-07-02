@@ -11,26 +11,10 @@ namespace muzickeStolice.Controller
     {
         public static List<Izvodjenje> _data = new List<Izvodjenje>();
 
-        static private int GenerateID()
-        {
-            for (int i = 0; ; i++)
-            {
-                bool taken = false;
-                foreach (Izvodjenje b in _data)
-                    if (b.ID == i)
-                    {
-                        taken = true;
-                        break;
-                    }
-                if (!taken)
-                    return i;
-            }
-        }
-
         static public Izvodjenje? Read(int id)
         {
             foreach (Izvodjenje i in _data)
-                if (i.ID == id)
+                if (i.Ocenljivo.ID == id)
                     return i;
             return null;
         }
@@ -39,7 +23,7 @@ namespace muzickeStolice.Controller
         {
             if (MuzickoDeloController.Read(deloId) == null)
                 throw new ArgumentException("Ne postoji delo sa tim identifikatorom");
-            Izvodjenje i = new Izvodjenje(GenerateID(), deloId, datum, opis);
+            Izvodjenje i = new Izvodjenje(OcenljivoController.GenerateID(), deloId, datum, opis);
             _data.Add(i);
             return i;
         }

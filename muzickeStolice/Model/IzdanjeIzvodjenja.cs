@@ -8,10 +8,13 @@ namespace muzickeStolice.Model
 {
     public class IzdanjeIzvodjenja
     {
+        public IzdanjeIzvodjenja() { }
+
         private int id;
         public int ID
         {
             get { return id; }
+            set { id = value; }
         }
 
         private int izvodjenjeID;

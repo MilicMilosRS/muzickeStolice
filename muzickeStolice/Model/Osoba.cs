@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace muzickeStolice.Model
 {
-    public class Osoba : IIzvodjac, IOcenljivo
+    public class Osoba
     {
-        private int id;
         public int ID
         {
-            get { return id; }
-            set { id = value; }
+            get { return Izvodjac.ID; }
+            set {  Izvodjac.ID = value;}
         }
+        public Izvodjac Izvodjac{get;set;}
 
         private string ime;
         public string Ime
@@ -38,9 +38,9 @@ namespace muzickeStolice.Model
 
         public Osoba() { }
 
-        public Osoba(int id, string ime, string prezime, string biografija, DateOnly datumRodjenja)
+        public Osoba(Izvodjac iz, string ime, string prezime, string biografija, DateOnly datumRodjenja)
         {
-            this.id = id;
+            this.Izvodjac = iz;
             this.ime = ime;
             this.prezime = prezime;
             this.biografija = biografija;

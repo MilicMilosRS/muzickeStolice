@@ -6,16 +6,13 @@ using System.Threading.Tasks;
 
 namespace muzickeStolice.Model
 {
-    public class MuzickoDelo : IOcenljivo
+    public class MuzickoDelo
     {
         public MuzickoDelo() { }
 
-        private int id;
-        public int ID
-        {
-            get { return id; }
-            set { id = value; }
-        }
+
+        public int Id { get { return Ocenljivo.ID; } set { Ocenljivo.ID = value; } }
+        public Ocenljivo Ocenljivo { get; set; }
 
         private string naziv;
         public string Naziv
@@ -40,20 +37,20 @@ namespace muzickeStolice.Model
 
         private TipDela tip;
 
-        private List<IIzvodjac> izvodjaci;
-        public List<IIzvodjac> Izvodjaci
+        private List<Izvodjac> izvodjaci;
+        public List<Izvodjac> Izvodjaci
         {
             get { return izvodjaci; }
         }
 
-        public MuzickoDelo(int id, string naziv, Zanr z, string opis, TipDela tip)
+        public MuzickoDelo(Ocenljivo id, string naziv, Zanr z, string opis, TipDela tip)
         {
-            this.id = id;
+            Ocenljivo = id;
             this.naziv = naziv;
             this.zanrDela = z;
             this.opis = opis;
             this.tip = tip;
-            this.izvodjaci = new List<IIzvodjac>();
+            this.izvodjaci = new List<Izvodjac>();
         }
 
         public TipDela Tip

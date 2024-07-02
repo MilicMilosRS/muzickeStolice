@@ -11,33 +11,18 @@ namespace muzickeStolice.Controller
     {
         static private List<Bend> _data = new List<Bend>();
 
-        static private int GenerateID()
-        {
-            for(int i = 0; ; i++)
-            {
-                bool taken = false;
-                foreach (Bend b in _data)
-                    if (b.ID == i)
-                    {
-                        taken = true;
-                        break;
-                    }
-                if (!taken)
-                    return i;
-            }
-        }
 
         static public Bend? Read(int id)
         {
             foreach (Bend b in _data)
-                if (b.ID == id)
+                if (b.Izvodjac.ID == id)
                     return b;
             return null;
         }
 
         static public Bend Create(string naziv, string opis, DateOnly datumOsnivanja)
         {
-            Bend b = new Bend(GenerateID(), naziv, opis, datumOsnivanja);
+            Bend b = new Bend(IzvodjacController.GenerateID(), naziv, opis, datumOsnivanja);
             _data.Add(b);
             return b;
         }

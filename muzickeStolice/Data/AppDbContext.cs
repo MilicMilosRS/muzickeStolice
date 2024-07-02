@@ -21,8 +21,19 @@ namespace muzickeStolice.Data
         }
 
         public DbSet<Bend> Bendovi { get; set; }
-        public DbSet<Osoba> Osobe { get; set; }
-        public DbSet<Zanr> Zanrovi { get; set; }
+        public DbSet<Izdanje> Izdanja { get; set; }
+        public DbSet<IzdanjeIzvodjenja> IzdanjaIzvodjenja{ get; set; }
+        public DbSet<Izvodjac> Izvodjaci { get; set; }
+        public DbSet<Izvodjenje> Izvodjenja { get; set; }
+        public DbSet<Korisnik> Korisnici { get; set; }
         public DbSet<MuzickoDelo> MuzickaDela { get; set; }
+        public DbSet<Ocena> Ocene { get; set; }
+        public DbSet<Ocenljivo> Ocenljivosti { get; set; }
+        public DbSet<Osoba> Osobe { get; set; }
+        public DbSet<Plejlista> Plejliste { get; set; }
+        public DbSet<Profil> Profili { get; set; }
+        public DbSet<Recenzija> Recenzije { get; set; }
+        public DbSet<Zanr> Zanrovi { get; set; }
+
     }
 }
