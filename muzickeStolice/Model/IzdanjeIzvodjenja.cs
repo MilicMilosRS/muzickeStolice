@@ -1,0 +1,32 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace muzickeStolice.Model
+{
+    public class IzdanjeIzvodjenja
+    {
+        private int izvodjenjeID;
+        public int IzvodjenjeID
+        {
+            get { return izvodjenjeID; }
+            set { izvodjenjeID = value; }
+        }
+
+        private string opis;
+        public string Opis
+        {
+            get { return opis; }
+            set { opis = value; }
+        }
+
+        private string url;
+        public string Url
+        {
+            get { return url; }
+            set { url = value; }
+        }
+    }
+}
