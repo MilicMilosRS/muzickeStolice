@@ -8,6 +8,8 @@ namespace muzickeStolice.Model
 {
     public class Bend : IIzvodjac, IOcenljivo
     {
+        public Bend() { }
+
         private int id;
         public int ID
         {

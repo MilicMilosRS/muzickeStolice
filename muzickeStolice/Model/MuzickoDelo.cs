@@ -8,6 +8,8 @@ namespace muzickeStolice.Model
 {
     public class MuzickoDelo : IOcenljivo
     {
+        public MuzickoDelo() { }
+
         private int id;
         public int ID
         {

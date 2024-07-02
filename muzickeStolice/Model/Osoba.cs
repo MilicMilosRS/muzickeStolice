@@ -36,6 +36,8 @@ namespace muzickeStolice.Model
         }
         private DateOnly datumRodjenja;
 
+        public Osoba() { }
+
         public Osoba(int id, string ime, string prezime, string biografija, DateOnly datumRodjenja)
         {
             this.id = id;

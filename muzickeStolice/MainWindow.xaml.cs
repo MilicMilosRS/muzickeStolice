@@ -19,6 +19,7 @@ namespace muzickeStolice
         public MainWindow()
         {
             InitializeComponent();
+            
         }
     }
 }

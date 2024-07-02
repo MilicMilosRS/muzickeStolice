@@ -1,25 +1,25 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace muzickeStolice.Model
 {
+    [PrimaryKey(nameof(Naziv))]
     public class Zanr
     {
-        private string naziv;
-        public string Naziv
-        {
-            get { return naziv; }
-            set { naziv = value; }
-        }
+        public Zanr() { }
+
+        public string Naziv { get; set; }
 
         private string opis;
 
         public Zanr(string naziv, string opis)
         {
-            this.naziv = naziv;
+            Naziv = naziv;
             this.opis = opis;
         }
 
