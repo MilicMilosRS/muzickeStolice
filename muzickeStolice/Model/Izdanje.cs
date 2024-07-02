@@ -8,6 +8,12 @@ namespace muzickeStolice.Model
 {
     public class Izdanje : IOcenljivo
     {
+        private int id;
+        public int ID
+        {
+            get { return id; }
+        }
+
         private int deloID;
         public int DeloID
         {
@@ -24,8 +30,9 @@ namespace muzickeStolice.Model
 
         private DateOnly datumIzdanja;
 
-        public Izdanje(int deloID, TipIzdanja tip, DateOnly datumIzdanja)
+        public Izdanje(int id, int deloID, TipIzdanja tip, DateOnly datumIzdanja)
         {
+            this.id = id;
             this.deloID = deloID;
             this.tip = tip;
             this.datumIzdanja = datumIzdanja;

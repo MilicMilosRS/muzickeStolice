@@ -24,6 +24,7 @@ namespace muzickeStolice.Model
         public string Lozinka
         {
             get { return lozinka; }
+            set { lozinka = value; }
         }
 
         private TipKorisnika tip;
@@ -39,6 +40,7 @@ namespace muzickeStolice.Model
         public TipKorisnika Tip
         {
             get { return tip; }
+            set { tip = value; }
         }
     }
 }

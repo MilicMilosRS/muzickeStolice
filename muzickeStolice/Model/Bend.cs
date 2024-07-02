@@ -39,7 +39,7 @@ namespace muzickeStolice.Model
             this.datumOsnivanja = datumOsnivanja;
         }
 
-        private DateOnly DatumOsnivanja
+        public DateOnly DatumOsnivanja
         {
             get { return datumOsnivanja; }
             set { datumOsnivanja = value; }

@@ -8,6 +8,12 @@ namespace muzickeStolice.Model
 {
     public class IzdanjeIzvodjenja
     {
+        private int id;
+        public int ID
+        {
+            get { return id; }
+        }
+
         private int izvodjenjeID;
         public int IzvodjenjeID
         {
@@ -23,6 +29,15 @@ namespace muzickeStolice.Model
         }
 
         private string url;
+
+        public IzdanjeIzvodjenja(int id, int izvodjenjeID, string opis, string url)
+        {
+            this.id = id;
+            this.izvodjenjeID = izvodjenjeID;
+            this.opis = opis;
+            this.url = url;
+        }
+
         public string Url
         {
             get { return url; }
