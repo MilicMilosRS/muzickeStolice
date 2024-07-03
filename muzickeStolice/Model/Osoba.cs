@@ -10,8 +10,8 @@ namespace muzickeStolice.Model
     {
         public int ID
         {
-            get { return Izvodjac.ID; }
-            set {  Izvodjac.ID = value;}
+            get;
+            set;
         }
         public Izvodjac Izvodjac{get;set;}
 
@@ -36,11 +36,14 @@ namespace muzickeStolice.Model
         }
         private DateOnly datumRodjenja;
 
+        public string SlikaUrl { get; set; }
+
         public Osoba() { }
 
         public Osoba(Izvodjac iz, string ime, string prezime, string biografija, DateOnly datumRodjenja)
         {
             this.Izvodjac = iz;
+            this.ID = Izvodjac.ID;
             this.ime = ime;
             this.prezime = prezime;
             this.biografija = biografija;

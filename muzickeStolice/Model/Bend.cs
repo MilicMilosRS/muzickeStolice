@@ -11,7 +11,7 @@ namespace muzickeStolice.Model
     {
         public Bend() { }
 
-        public int Id { get { return Izvodjac.ID; } set { Izvodjac.ID = value; } }
+        public int Id { get; set; }
         public Izvodjac Izvodjac{get;set;}
 
         private string naziv;
@@ -30,12 +30,16 @@ namespace muzickeStolice.Model
 
         private DateOnly datumOsnivanja;
 
+        public ICollection<Osoba> clanovi { get; set; }
+
         public Bend(Izvodjac iz, string naziv, string opis, DateOnly datumOsnivanja)
         {
             Izvodjac = iz;
+            Id = Izvodjac.ID;
             this.naziv = naziv;
             this.opis = opis;
             this.datumOsnivanja = datumOsnivanja;
+            clanovi = new List<Osoba>();
         }
 
         public DateOnly DatumOsnivanja

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using muzickeStolice.Data;
@@ -11,9 +12,11 @@ using muzickeStolice.Data;
 namespace muzickeStolice.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240703134613_gas")]
+    partial class gas
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -246,9 +249,6 @@ namespace muzickeStolice.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ID"));
 
-                    b.Property<int?>("BendId")
-                        .HasColumnType("integer");
-
                     b.Property<string>("Biografija")
                         .IsRequired()
                         .HasColumnType("text");
@@ -267,13 +267,7 @@ namespace muzickeStolice.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("SlikaUrl")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.HasKey("ID");
-
-                    b.HasIndex("BendId");
 
                     b.HasIndex("IzvodjacID");
 
@@ -420,10 +414,6 @@ namespace muzickeStolice.Migrations
 
             modelBuilder.Entity("muzickeStolice.Model.Osoba", b =>
                 {
-                    b.HasOne("muzickeStolice.Model.Bend", null)
-                        .WithMany("clanovi")
-                        .HasForeignKey("BendId");
-
                     b.HasOne("muzickeStolice.Model.Izvodjac", "Izvodjac")
                         .WithMany()
                         .HasForeignKey("IzvodjacID")
@@ -440,11 +430,6 @@ namespace muzickeStolice.Migrations
                         .HasForeignKey("ZanrNaziv");
 
                     b.Navigation("Zanr");
-                });
-
-            modelBuilder.Entity("muzickeStolice.Model.Bend", b =>
-                {
-                    b.Navigation("clanovi");
                 });
 
             modelBuilder.Entity("muzickeStolice.Model.Izvodjenje", b =>

@@ -9,14 +9,13 @@ namespace muzickeStolice.Controller
 {
     public static class IzvodjacController
     {
-        private static List<Izvodjac> identifikatori = new List<Izvodjac>();
 
         public static Izvodjac GenerateID()
         {
             for (int i = 0; ; i++)
             {
                 bool taken = false;
-                foreach (Izvodjac o in identifikatori)
+                foreach (Izvodjac o in DatabaseController.database.Izvodjaci)
                 {
                     if (o.ID == i)
                     {
@@ -28,7 +27,8 @@ namespace muzickeStolice.Controller
                 {
                     Izvodjac o = new Izvodjac();
                     o.ID = i;
-                    identifikatori.Add(o);
+                    DatabaseController.database.Izvodjaci.Add(o);
+                    DatabaseController.database.SaveChanges();
                     return o;
                 }
             }

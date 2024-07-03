@@ -9,11 +9,9 @@ namespace muzickeStolice.Controller
 {
     public static class ZanrController
     {
-        static private List<Zanr> _data = new List<Zanr>();
-
         static public Zanr? Read(string naziv)
         {
-            foreach (Zanr z in _data)
+            foreach (Zanr z in DatabaseController.database.Zanrovi)
                 if (z.Naziv == naziv)
                     return z;
             return null;
@@ -24,7 +22,8 @@ namespace muzickeStolice.Controller
             if (Read(naziv) != null)
                 throw new ArgumentException("Vec postoji zanr sa tim nazivom");
             Zanr z = new Zanr(naziv, opis);
-            _data.Add(z);
+            DatabaseController.database.Zanrovi.Add(z);
+            DatabaseController.database.SaveChanges();
             return z;
         }
 
@@ -34,6 +33,7 @@ namespace muzickeStolice.Controller
             if (z == null)
                 return;
             z.Opis = opis;
+            DatabaseController.database.SaveChanges();
         }
 
         static public void Delete(string naziv)
@@ -41,7 +41,8 @@ namespace muzickeStolice.Controller
             Zanr? z = Read(naziv);
             if (z == null)
                 return;
-            _data.Remove(z);
+            DatabaseController.database.Remove(z);
+            DatabaseController.database.SaveChanges();
         }
     }
 }

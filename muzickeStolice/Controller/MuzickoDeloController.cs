@@ -1,4 +1,5 @@
-﻿using muzickeStolice.Model;
+﻿using Microsoft.EntityFrameworkCore;
+using muzickeStolice.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +10,10 @@ namespace muzickeStolice.Controller
 {
     static public class MuzickoDeloController
     {
-        static private List<MuzickoDelo> _data = new List<MuzickoDelo>();
-
         static public MuzickoDelo? Read(int id)
         {
-            foreach (MuzickoDelo md in _data)
+            foreach (MuzickoDelo md in 
+                DatabaseController.database.MuzickaDela.Include(d => d.Ocenljivo).Include(d => d.Izvodjaci).Include(d => d.ZanrDela))
                 if (md.Ocenljivo.ID == id)
                     return md;
             return null;
@@ -22,7 +22,8 @@ namespace muzickeStolice.Controller
         static public MuzickoDelo Create(string naziv, Zanr zanr, string opis, TipDela tip)
         {
             MuzickoDelo md = new MuzickoDelo(OcenljivoController.GenerateID(), naziv, zanr, opis, tip);
-            _data.Add(md);
+            DatabaseController.database.MuzickaDela.Add(md);
+            DatabaseController.database.SaveChanges();
             return md;
         }
 
@@ -36,7 +37,8 @@ namespace muzickeStolice.Controller
             md.Naziv = md2.Naziv;
             md.Tip = md2.Tip;
             md.Izvodjaci.Clear();
-            md.Izvodjaci.AddRange(md2.Izvodjaci);
+            foreach (Izvodjac i in md2.Izvodjaci)
+                md.Izvodjaci.Add(i);
         }
 
         static public void Delete(int id)
@@ -44,7 +46,8 @@ namespace muzickeStolice.Controller
             MuzickoDelo? md = Read(id);
             if (md == null)
                 return;
-            _data.Remove(md);
+            DatabaseController.database.MuzickaDela.Remove(md);
+            DatabaseController.database.SaveChanges();
         }
     }
 }
