@@ -56,6 +56,7 @@ namespace muzickeStolice
             {
                 newMuzickoDelo.Izvodjaci.Add(izvodjac);
             }
+            DatabaseController.database.SaveChanges();
 
             MessageBox.Show("Music work created successfully!");
             this.Close();
