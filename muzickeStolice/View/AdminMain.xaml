@@ -7,6 +7,6 @@
         mc:Ignorable="d"
         Title="AdminMain" Height="450" Width="800">
     <Grid>
-        
+        <Button Content="Create Delo" Click="CreateDeloButton_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Height="30" Margin="0,20,0,0"/>
     </Grid>
 </Window>

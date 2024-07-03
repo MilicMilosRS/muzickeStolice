@@ -30,7 +30,7 @@ namespace muzickeStolice.View
                 }
                 else
                 {
-
+                    OpenAdminMain();
                 }
             }
             else
@@ -43,6 +43,12 @@ namespace muzickeStolice.View
         {
             RegisterWindow registerWindow = new RegisterWindow();
             registerWindow.ShowDialog();
+        }
+        private void OpenAdminMain()
+        {
+            AdminMain adminMain = new AdminMain();
+            adminMain.Show();
+            this.Close();
         }
     }
 }
