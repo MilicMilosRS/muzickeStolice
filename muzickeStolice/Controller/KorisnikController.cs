@@ -1,9 +1,6 @@
 ﻿using muzickeStolice.Model;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace muzickeStolice.Controller
 {
@@ -27,12 +24,10 @@ namespace muzickeStolice.Controller
             return null;
         }
 
-
-
         static public Korisnik Create(string email, string korisnickoIme, string lozinka, TipKorisnika tip)
         {
             if (Read(email) != null)
-                throw new ArgumentException("EMail je vec zauzet");
+                throw new ArgumentException("Email je vec zauzet");
             if (ReadKorIme(korisnickoIme) != null)
                 throw new ArgumentException("Korisnicko ime je vec zauzeto");
             Korisnik k = new Korisnik(email, korisnickoIme, lozinka, tip);
@@ -56,6 +51,7 @@ namespace muzickeStolice.Controller
                 return;
             _data.Remove(k);
         }
+
         static public Korisnik? Login(string email, string lozinka)
         {
             Korisnik? k = Read(email);
