@@ -28,7 +28,7 @@ namespace muzickeStolice.Model
             set { opis = value; }
         }
 
-        public ICollection<string> slikeLinkovi { get; set; }
+        public IList<string> slikeLinkovi { get; set; }
 
         private DateOnly datumOsnivanja;
 
