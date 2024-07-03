@@ -20,11 +20,9 @@ namespace muzickeStolice.View
 
         private void LoadIzvodjaci()
         {
-            // Load Osoba and Bend separately
             var osobe = DatabaseController.database.Osobe.Include(o => o.Izvodjac).ToList();
             var bendovi = DatabaseController.database.Bendovi.Include(b => b.Izvodjac).ToList();
 
-            // Combine the results into a unified view model
             var izvodjaciView = new List<dynamic>();
 
             izvodjaciView.AddRange(osobe.Select(o => new
