@@ -1,6 +1,6 @@
 ﻿using muzickeStolice.Controller;
 using muzickeStolice.Model;
-using muzickeStolice.View;
+using muzickeStolice.View; // Ensure this line is present
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
@@ -56,6 +56,7 @@ namespace muzickeStolice
             {
                 newMuzickoDelo.Izvodjaci.Add(izvodjac);
             }
+            DatabaseController.database.SaveChanges();
 
             MessageBox.Show("Music work created successfully!");
             this.Close();
