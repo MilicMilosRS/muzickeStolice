@@ -1,4 +1,6 @@
-﻿using muzickeStolice.Model;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Conventions;
+using muzickeStolice.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +11,9 @@ namespace muzickeStolice.Controller
 {
     static public class OcenaController
     {
-        static private List<Ocena> _data = new List<Ocena>();
-
         static public Ocena? Read(string autorEmail, Ocenljivo primalac)
         {
-            foreach (Ocena o in _data)
+            foreach (Ocena o in DatabaseController.database.Ocene.Include(o => o.Autor).Include(o => o.Primalac))
                 if (o.Autor.Email == autorEmail && o.Primalac == primalac)
                     return o;
             return null;
@@ -25,18 +25,19 @@ namespace muzickeStolice.Controller
             if (k == null)
                 throw new ArgumentException("Ne postoji korisnik sa tim mejlom");
             Ocena o = new Ocena(primalac, k, vrednost);
-            _data.Add(o);
+            DatabaseController.database.Ocene.Add(o);
+            DatabaseController.database.SaveChanges();
             return o;
         }
 
         static public List<Ocena> getOcenaForKorisnik(string email)
         {
             List<Ocena> listaOcena = new List<Ocena>();
-            for(int i = 0; i < _data.Count; i++)
+            foreach(Ocena o in DatabaseController.database.Ocene.Include(o => o.Autor))
             {
-                if (_data[i].Autor.Email == email)
+                if (o.Autor.Email == email)
                 {
-                    listaOcena.Add(_data[i]);
+                    listaOcena.Add(o);
                 }
             }
             return listaOcena;
@@ -49,11 +50,12 @@ namespace muzickeStolice.Controller
             if (o == null)
                 return;
             o.Vrednost = vrednost;
+            DatabaseController.database.SaveChanges();
         }
 
         static public void AddOcena(Ocena o)
         {
-            _data.Add(o);
+            DatabaseController.database.Add(o);
         }
 
         static public void Delete(string autorEmail, Ocenljivo primalac)
@@ -61,15 +63,17 @@ namespace muzickeStolice.Controller
             Ocena? o = Read(autorEmail, primalac);
             if (o == null)
                 return;
-            _data.Remove(o);
+            DatabaseController.database.Ocene.Remove(o);
+            DatabaseController.database.SaveChanges();
         }
         static public Ocena? GetOcena(int primalacId, string autorEmail)
         {
-            return _data.FirstOrDefault(o => o.Primalac.ID == primalacId && o.Autor.Email == autorEmail);
+            return DatabaseController.database.Ocene.Include(o => o.Autor).Include(o => o.Primalac)
+                .FirstOrDefault(o => o.Primalac.ID == primalacId && o.Autor.Email == autorEmail);
         }
         static public List<Ocena> GetOcenasForOcenljivo(int ocenljivoId)
         {
-            return _data.Where(o => o.Primalac.ID == ocenljivoId).ToList();
+            return DatabaseController.database.Ocene.Include(o => o.Primalac).Where(o => o.Primalac.ID == ocenljivoId).ToList();
         }
     }
 }

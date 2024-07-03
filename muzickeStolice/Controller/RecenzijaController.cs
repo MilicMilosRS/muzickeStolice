@@ -1,4 +1,5 @@
-﻿using muzickeStolice.Model;
+﻿using Microsoft.EntityFrameworkCore;
+using muzickeStolice.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +10,9 @@ namespace muzickeStolice.Controller
 {
     static public class RecenzijaController
     {
-        static private List<Recenzija> _data = new List<Recenzija>();
-
         static public Recenzija? Read(Ocena o)
         {
-            foreach (Recenzija r in _data)
+            foreach (Recenzija r in DatabaseController.database.Recenzije.Include( r => r.Ocena))
                 if (r.Ocena == o)
                     return r;
             return null;
@@ -22,7 +21,8 @@ namespace muzickeStolice.Controller
         static public Recenzija Create(Ocena o, string tekst)
         {
             Recenzija r = new Recenzija(tekst, o);
-            _data.Add(r);
+            DatabaseController.database.Recenzije.Add(r);
+            DatabaseController.database.SaveChanges();
             return r;
         }
 
@@ -32,6 +32,7 @@ namespace muzickeStolice.Controller
             if (r == null)
                 return;
             r.Tekst = tekst;
+            DatabaseController.database.SaveChanges();
         }
     }
 }

@@ -72,7 +72,8 @@ namespace muzickeStolice.Controller
         }
         static public List<MuzickoDelo> GetSortedAlbumsByRating()
         {
-            var albums = _data.Where(md => md.Tip == TipDela.Album).ToList();
+            var albums = DatabaseController.database.MuzickaDela.Include(m => m.Tip)
+                .Where(md => md.Tip == TipDela.Album).ToList();
 
             Dictionary<MuzickoDelo, double> albumRatings = new Dictionary<MuzickoDelo, double>();
 

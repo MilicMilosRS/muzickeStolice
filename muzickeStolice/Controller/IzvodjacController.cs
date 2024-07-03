@@ -9,7 +9,6 @@ namespace muzickeStolice.Controller
 {
     public static class IzvodjacController
     {
-
         public static Izvodjac GenerateID()
         {
             for (int i = 0; ; i++)

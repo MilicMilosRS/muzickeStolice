@@ -1,4 +1,5 @@
-﻿using muzickeStolice.Model;
+﻿using Microsoft.EntityFrameworkCore;
+using muzickeStolice.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +10,9 @@ namespace muzickeStolice.Controller
 {
     public static class IzdanjeController
     {
-        private static List<Izdanje> _data = new List<Izdanje>();
-
         static public Izdanje? Read(int id)
         {
-            foreach (Izdanje i in _data)
+            foreach (Izdanje i in DatabaseController.database.Izdanja.Include(i => i.Ocenljivo))
                 if (i.Ocenljivo.ID == id)
                     return i;
             return null;
@@ -24,7 +23,8 @@ namespace muzickeStolice.Controller
             if (MuzickoDeloController.Read(deloId) == null)
                 throw new ArgumentException("Ne postoji muzicko delo sa tim identifikatorom");
             Izdanje i = new Izdanje(OcenljivoController.GenerateID(), deloId, tip, datumIzdanja);
-            _data.Add(i);
+            DatabaseController.database.Izdanja.Add(i);
+            DatabaseController.database.SaveChanges();
             return i;
         }
 
@@ -36,6 +36,7 @@ namespace muzickeStolice.Controller
             i.DeloID = i2.DeloID;
             i.Tip = i2.Tip;
             i.DatumIzdanja = i2.DatumIzdanja;
+            DatabaseController.database.SaveChanges();
         }
 
         static public void Delete(int id)
@@ -43,7 +44,8 @@ namespace muzickeStolice.Controller
             Izdanje? i = Read(id);
             if (i == null)
                 return;
-            _data.Remove(i);
+            DatabaseController.database.Izdanja.Remove(i);
+            DatabaseController.database.SaveChanges();
         }
 
     }

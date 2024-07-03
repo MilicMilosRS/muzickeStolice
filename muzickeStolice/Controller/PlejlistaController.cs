@@ -1,4 +1,5 @@
-﻿using muzickeStolice.Model;
+﻿using Microsoft.EntityFrameworkCore;
+using muzickeStolice.Model;
 using System;
 using System.Collections.Generic;
 using System.DirectoryServices;
@@ -10,14 +11,12 @@ namespace muzickeStolice.Controller
 {
     static public class PlejlistaController
     {
-        static private List<Plejlista> _data = new List<Plejlista>();
-
         static private int GenerateID()
         {
             for (int i = 0; ; i++)
             {
                 bool taken = false;
-                foreach (Plejlista b in _data)
+                foreach (Plejlista b in DatabaseController.database.Plejliste)
                     if (b.ID == i)
                     {
                         taken = true;
@@ -30,7 +29,7 @@ namespace muzickeStolice.Controller
 
         static public Plejlista? Read(int id)
         {
-            foreach (Plejlista p in _data)
+            foreach (Plejlista p in DatabaseController.database.Plejliste)
                 if (p.ID == id)
                     return p;
             return null;
@@ -46,7 +45,8 @@ namespace muzickeStolice.Controller
                 throw new ArgumentException("Ne postoji zanr sa tim nazivom");
 
             Plejlista p = new Plejlista(autor, z);
-            _data.Add(p);
+            DatabaseController.database.Plejliste.Add(p);
+            DatabaseController.database.SaveChanges();
             return p;
         }
 
@@ -61,6 +61,8 @@ namespace muzickeStolice.Controller
                 return;
 
             p.Zanr = z;
+
+            DatabaseController.database.SaveChanges();
         }
 
         static public void Delete(int id)
@@ -68,7 +70,8 @@ namespace muzickeStolice.Controller
             Plejlista? p = Read(id);
             if (p == null)
                 return;
-            _data.Remove(p);
+            DatabaseController.database.Plejliste.Remove(p);
+            DatabaseController.database.SaveChanges();
         }
         static public List<Plejlista> getKorisnikPlejliste(string autorEmail)
         {
@@ -76,7 +79,8 @@ namespace muzickeStolice.Controller
             if (autor == null)
                 throw new ArgumentException("Ne postoji korisnik sa tim mejlom");
 
-            List<Plejlista> korisnikovePlejliste = _data.Where(p => p.Autor.Email == autorEmail).ToList();
+            List<Plejlista> korisnikovePlejliste = DatabaseController.database.Plejliste.Include(p => p.Autor)
+                .Where(p => p.Autor.Email == autorEmail).ToList();
             return korisnikovePlejliste;
         }
 
@@ -85,46 +89,7 @@ namespace muzickeStolice.Controller
             Plejlista p = Read(playlistID);
             MuzickoDelo md = MuzickoDeloController.Read(muzickoDelo);
             p.Muzika.Add(md);
-        }
-
-        static public void RatePlaylist(int playlistId, int vrednost, string autorEmail)
-        {
-            Plejlista? playlist = Read(playlistId);
-            if (playlist == null)
-                throw new ArgumentException("Plejlista nije pronadjena");
-
-            Ocena? ocena = OcenaController.GetOcena(playlist.ID, autorEmail);
-            if (ocena != null)
-            {
-                ocena.Vrednost = vrednost;
-            }
-            else
-            {
-                OcenaController.Create(autorEmail, new Ocenljivo { ID = playlist.ID }, vrednost);
-            }
-        }
-
-        static public List<Plejlista> GetSortedPlaylistsByRating()
-        {
-            List<Plejlista> playlistsWithRatings = new List<Plejlista>();
-
-            foreach (var playlist in _data)
-            {
-                var ocene = OcenaController.GetOcenasForOcenljivo(playlist.ID);
-                if (ocene.Count > 0)
-                {
-                    playlistsWithRatings.Add(playlist);
-                }
-            }
-
-            playlistsWithRatings.Sort((x, y) =>
-            {
-                double avgX = OcenaController.GetOcenasForOcenljivo(x.ID).Average(o => o.Vrednost);
-                double avgY = OcenaController.GetOcenasForOcenljivo(y.ID).Average(o => o.Vrednost);
-                return avgY.CompareTo(avgX);
-            });
-
-            return playlistsWithRatings;
+            DatabaseController.database.SaveChanges();
         }
 
     }

@@ -9,14 +9,12 @@ namespace muzickeStolice.Controller
 {
     public static class IzdanjeIzvodjenjaController
     {
-        private static List<IzdanjeIzvodjenja> _data = new List<IzdanjeIzvodjenja>();
-
         static private int GenerateID()
         {
             for (int i = 0; ; i++)
             {
                 bool taken = false;
-                foreach (IzdanjeIzvodjenja b in _data)
+                foreach (IzdanjeIzvodjenja b in DatabaseController.database.IzdanjaIzvodjenja)
                     if (b.ID == i)
                     {
                         taken = true;
@@ -29,7 +27,7 @@ namespace muzickeStolice.Controller
 
         static public IzdanjeIzvodjenja? Read(int id)
         {
-            foreach (IzdanjeIzvodjenja ii in _data)
+            foreach (IzdanjeIzvodjenja ii in DatabaseController.database.IzdanjaIzvodjenja)
                 if (ii.ID == id)
                     return ii;
             return null;
@@ -40,7 +38,8 @@ namespace muzickeStolice.Controller
             if (IzvodjenjeController.Read(izvodjenjeId) == null)
                 throw new ArgumentException("Ne postoji izvodjenje sa tim identifikatorom");
             IzdanjeIzvodjenja ii = new IzdanjeIzvodjenja(GenerateID(), izvodjenjeId, opis, url);
-            _data.Add(ii);
+            DatabaseController.database.IzdanjaIzvodjenja.Add(ii);
+            DatabaseController.database.SaveChanges();
             return ii;
         }
 
@@ -51,6 +50,7 @@ namespace muzickeStolice.Controller
                 return;
             ii.Opis = ii2.Opis;
             ii.Url = ii2.Url;
+            DatabaseController.database.SaveChanges();
         }
 
         static public void Delete(int id)
@@ -58,7 +58,8 @@ namespace muzickeStolice.Controller
             IzdanjeIzvodjenja ii = Read(id);
             if (ii == null)
                 return;
-            _data.Remove(ii);
+            DatabaseController.database.IzdanjaIzvodjenja.Remove(ii);
+            DatabaseController.database.SaveChanges();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using muzickeStolice.Model;
+﻿using Microsoft.EntityFrameworkCore;
+using muzickeStolice.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,12 +9,10 @@ using System.Threading.Tasks;
 namespace muzickeStolice.Controller
 {
     static public class ProfilController
-    {
-        static private List<Profil> _data = new List<Profil>();
-        
+    {        
         static public Profil? Read(string korisnikEmail)
         {
-            foreach (Profil p in _data)
+            foreach (Profil p in DatabaseController.database.Profili.Include(p => p.Korisnik))
                 if (p.Korisnik.Email == korisnikEmail)
                     return p;
             return null;
@@ -27,7 +26,8 @@ namespace muzickeStolice.Controller
             if (Read(korisnikEmail) != null)
                 throw new ArgumentException("Taj korisnik vec ima profil");
             Profil p = new Profil(k, ime, prezime);
-            _data.Add(p);
+            DatabaseController.database.Profili.Add(p);
+            DatabaseController.database.SaveChanges();
             return p;
         }
 
@@ -45,7 +45,8 @@ namespace muzickeStolice.Controller
             Profil? p = Read(korisnikEmail);
             if (p == null)
                 return;
-            _data.Remove(p);
+            DatabaseController.database.Profili.Remove(p);
+            DatabaseController.database.SaveChanges();
         }
     }
 }
