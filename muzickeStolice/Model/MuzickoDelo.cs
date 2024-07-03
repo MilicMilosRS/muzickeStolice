@@ -38,6 +38,8 @@ namespace muzickeStolice.Model
         private TipDela tip;
 
         private ICollection<Izvodjac> izvodjaci;
+
+        public ICollection<string> slikeLinkovi { get; set; }
         public virtual ICollection<Izvodjac> Izvodjaci
         {
             get { return izvodjaci; }
@@ -52,6 +54,7 @@ namespace muzickeStolice.Model
             this.opis = opis;
             this.tip = tip;
             this.izvodjaci = new List<Izvodjac>();
+            slikeLinkovi = new List<string>();
         }
 
         public TipDela Tip

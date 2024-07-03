@@ -32,8 +32,15 @@ namespace muzickeStolice.View
             else
                 o = os;
 
-            if(o.SlikaUrl != null && o.SlikaUrl != "")
+            if (o.SlikaUrl != null && o.SlikaUrl != "")
                 slika.Source = new BitmapImage(new Uri(o.SlikaUrl));
+            else
+                slika.Source = new BitmapImage(new Uri("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"));
+
+            tbIme.Text = o.Ime;
+            tbPrezime.Text = o.Prezime;
+            tbBiografija.Text = o.Biografija;
+            datumRodjenjaPicker.SelectedDate = new DateTime(o.DatumRodjenja, new TimeOnly(0));
         }
     }
 }
