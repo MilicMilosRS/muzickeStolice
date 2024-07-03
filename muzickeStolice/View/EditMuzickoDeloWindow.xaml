@@ -1,0 +1,15 @@
+﻿<Window x:Class="muzickeStolice.View.EditMuzickoDeloWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Edit Muzicko Delo" Height="450" Width="400">
+    <Grid>
+        <StackPanel Margin="10">
+            <TextBox x:Name="NazivTextBox" Margin="0,10,0,0" />
+            <ComboBox x:Name="ZanrComboBox" Margin="0,10,0,0" />
+            <TextBox x:Name="OpisTextBox" Margin="0,10,0,0" />
+            <ComboBox x:Name="TipComboBox" Margin="0,10,0,0" />
+            <TextBox x:Name="SlikeLinkoviTextBox" Margin="0,10,0,0" />
+            <Button Content="Save" Click="SaveButton_Click" Margin="0,20,0,0" />
+        </StackPanel>
+    </Grid>
+</Window>
