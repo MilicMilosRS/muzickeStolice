@@ -25,23 +25,21 @@ namespace muzickeStolice.Model
         public Recenzija(string tekst, Ocena ocena)
         {
             this.tekst = tekst;
+            this.primalacId = ocena.primalacId;
+            this.autorEmail = ocena.autorEmail;
             this.ocena = ocena;
+            Prihvacena = false;
         }
 
-        public int primalacId
-        {
-            get { return ocena.Primalac.ID; }
-            set { }
-        }
-        public string autorEmail
-        {
-            get { return ocena.Autor.Email; }
-            set { }
-        }
+        public int primalacId { get; set; }
+        public string autorEmail { get; set; }
 
         public Ocena Ocena
         {
             get { return ocena; }
+            set { ocena = value; }
         }
+
+        public Boolean Prihvacena { get; set; }
     }
 }

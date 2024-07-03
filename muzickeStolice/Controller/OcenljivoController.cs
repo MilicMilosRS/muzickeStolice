@@ -33,5 +33,29 @@ namespace muzickeStolice.Controller
             }
         }
 
+        public static string GetNazivDela(Ocenljivo o)
+        {
+            MuzickoDelo? md = MuzickoDeloController.Read(o.ID);
+            if (md != null)
+                return md.Naziv;
+
+            Izvodjenje? izv = IzvodjenjeController.Read(o.ID);
+            if (izv != null)
+            {
+                MuzickoDelo? imd = MuzickoDeloController.Read(o.ID);
+                if (imd != null)
+                    return imd.Naziv + " " + izv.Datum.ToString();
+            }
+
+            Izdanje? izd = IzdanjeController.Read(o.ID);
+            if (izd != null)
+            {
+                MuzickoDelo? imd = MuzickoDeloController.Read(o.ID);
+                if (imd != null)
+                    return imd.Naziv + " " + izd.Tip.ToString() + " " + izd.DatumIzdanja.ToString();
+            }
+
+            return "";
+        }
     }
 }

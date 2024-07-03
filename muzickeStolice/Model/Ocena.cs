@@ -16,22 +16,26 @@ namespace muzickeStolice.Model
         public Ocenljivo Primalac
         {
             get { return primalac; }
+            set { primalac = value; }
         }
-        private int primalacId { get { return primalac.ID; } set { } }
+        public int primalacId { get; set; }
 
         private Korisnik autor;
         public Korisnik Autor
         {
             get { return autor; }
+            set { autor = value; }
         }
-        private string autorEmail { get { return autor.Email; } set { } }
+        public string autorEmail { get; set; }
 
         private int vrednost;
 
         public Ocena(Ocenljivo primalac, Korisnik autor, int vrednost)
         {
             this.primalac = primalac;
+            primalacId = primalac.ID;
             this.autor = autor;
+            autor.Email = autor.Email;
             this.vrednost = vrednost;
         }
 

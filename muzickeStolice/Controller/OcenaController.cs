@@ -13,7 +13,7 @@ namespace muzickeStolice.Controller
     {
         static public Ocena? Read(string autorEmail, Ocenljivo primalac)
         {
-            foreach (Ocena o in DatabaseController.database.Ocene)
+            foreach (Ocena o in DatabaseController.database.Ocene.Include(o => o.Primalac).Include(o => o.Autor))
                 if (o.Autor.Email == autorEmail && o.Primalac == primalac)
                     return o;
             return null;
@@ -63,6 +63,11 @@ namespace muzickeStolice.Controller
             Ocena? o = Read(autorEmail, primalac);
             if (o == null)
                 return;
+
+            Recenzija? r = RecenzijaController.Read(o);
+            if (r != null)
+                RecenzijaController.Delete(o);
+
             DatabaseController.database.Ocene.Remove(o);
             DatabaseController.database.SaveChanges();
         }

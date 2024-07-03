@@ -27,7 +27,8 @@ namespace muzickeStolice.View
                     ps.Show();
                 }  else if(user.Tip == TipKorisnika.Urednik)
                 {
-
+                    UrednikMain um = new UrednikMain();
+                    um.Show();
                 }
                 else
                 {

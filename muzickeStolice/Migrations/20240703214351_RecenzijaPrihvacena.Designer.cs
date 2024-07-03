@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using muzickeStolice.Data;
@@ -11,9 +12,11 @@ using muzickeStolice.Data;
 namespace muzickeStolice.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240703214351_RecenzijaPrihvacena")]
+    partial class RecenzijaPrihvacena
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -230,8 +233,6 @@ namespace muzickeStolice.Migrations
 
                     b.HasKey("primalacId", "autorEmail");
 
-                    b.HasIndex("autorEmail");
-
                     b.ToTable("Ocene");
                 });
 
@@ -340,13 +341,6 @@ namespace muzickeStolice.Migrations
                     b.Property<string>("autorEmail")
                         .HasColumnType("text");
 
-                    b.Property<string>("OcenaautorEmail")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<int>("OcenaprimalacId")
-                        .HasColumnType("integer");
-
                     b.Property<bool>("Prihvacena")
                         .HasColumnType("boolean");
 
@@ -355,8 +349,6 @@ namespace muzickeStolice.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("primalacId", "autorEmail");
-
-                    b.HasIndex("OcenaprimalacId", "OcenaautorEmail");
 
                     b.ToTable("Recenzije");
                 });
@@ -440,25 +432,6 @@ namespace muzickeStolice.Migrations
                     b.Navigation("ZanrDela");
                 });
 
-            modelBuilder.Entity("muzickeStolice.Model.Ocena", b =>
-                {
-                    b.HasOne("muzickeStolice.Model.Korisnik", "Autor")
-                        .WithMany()
-                        .HasForeignKey("autorEmail")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("muzickeStolice.Model.Ocenljivo", "Primalac")
-                        .WithMany()
-                        .HasForeignKey("primalacId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Autor");
-
-                    b.Navigation("Primalac");
-                });
-
             modelBuilder.Entity("muzickeStolice.Model.Osoba", b =>
                 {
                     b.HasOne("muzickeStolice.Model.Bend", null)
@@ -481,17 +454,6 @@ namespace muzickeStolice.Migrations
                         .HasForeignKey("ZanrNaziv");
 
                     b.Navigation("Zanr");
-                });
-
-            modelBuilder.Entity("muzickeStolice.Model.Recenzija", b =>
-                {
-                    b.HasOne("muzickeStolice.Model.Ocena", "Ocena")
-                        .WithMany()
-                        .HasForeignKey("OcenaprimalacId", "OcenaautorEmail")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Ocena");
                 });
 
             modelBuilder.Entity("muzickeStolice.Model.Bend", b =>
