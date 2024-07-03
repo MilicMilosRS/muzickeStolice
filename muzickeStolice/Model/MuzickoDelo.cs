@@ -11,7 +11,7 @@ namespace muzickeStolice.Model
         public MuzickoDelo() { }
 
 
-        public int Id { get { return Ocenljivo.ID; } set { Ocenljivo.ID = value; } }
+        public int Id { get; set; }
         public Ocenljivo Ocenljivo { get; set; }
 
         private string naziv;
@@ -37,8 +37,8 @@ namespace muzickeStolice.Model
 
         private TipDela tip;
 
-        private List<Izvodjac> izvodjaci;
-        public List<Izvodjac> Izvodjaci
+        private ICollection<Izvodjac> izvodjaci;
+        public virtual ICollection<Izvodjac> Izvodjaci
         {
             get { return izvodjaci; }
         }
@@ -46,6 +46,7 @@ namespace muzickeStolice.Model
         public MuzickoDelo(Ocenljivo id, string naziv, Zanr z, string opis, TipDela tip)
         {
             Ocenljivo = id;
+            Id = Ocenljivo.ID;
             this.naziv = naziv;
             this.zanrDela = z;
             this.opis = opis;

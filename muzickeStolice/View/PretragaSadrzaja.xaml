@@ -1,0 +1,33 @@
+﻿<Window x:Class="muzickeStolice.View.PretragaSadrzaja"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:muzickeStolice.View"
+        mc:Ignorable="d"
+        Title="PretragaSadrzaja" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="106*"/>
+            <ColumnDefinition Width="589*"/>
+            <ColumnDefinition Width="105*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="26*"/>
+            <RowDefinition Height="377*"/>
+            <RowDefinition Height="31*"/>
+        </Grid.RowDefinitions>
+        <Button Grid.Column="2" Name="bPretrazi" Content="Pretrazi" HorizontalAlignment="Center" VerticalAlignment="Center" Width="85" Click="bPretrazi_Click"/>
+        <TextBox Grid.Column="1" Name="tbPretraga" HorizontalAlignment="Center" Margin="0,3,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="569"/>
+        <ScrollViewer Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" Grid.RowSpan="1">
+            <StackPanel>
+                <Label Content="Osobe:"/>
+                <DataGrid Name="dgOsobe"/>
+                <Label Content="Bendovi:"/>
+                <DataGrid Name="dgBendovi"/>
+            </StackPanel>
+        </ScrollViewer>
+        <Button Name="bDetalji" Grid.Column="2" Content="Detalji" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Center" Width="95" Click="bDetalji_Click"/>
+
+    </Grid>
+</Window>

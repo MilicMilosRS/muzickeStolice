@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using muzickeStolice.Data;
@@ -11,9 +12,11 @@ using muzickeStolice.Data;
 namespace muzickeStolice.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240703144825_BendClanovi")]
+    partial class BendClanovi
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -264,10 +267,6 @@ namespace muzickeStolice.Migrations
                         .HasColumnType("integer");
 
                     b.Property<string>("Prezime")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("SlikaUrl")
                         .IsRequired()
                         .HasColumnType("text");
 

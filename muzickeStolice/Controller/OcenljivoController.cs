@@ -9,14 +9,12 @@ namespace muzickeStolice.Controller
 {
     public static class OcenljivoController
     {
-        private static List<Ocenljivo> identifikatori = new List<Ocenljivo>();
-
         public static Ocenljivo GenerateID()
         {
             for(int i = 0; ; i++)
             {
                 bool taken = false;
-                foreach(Ocenljivo o in  identifikatori)
+                foreach(Ocenljivo o in DatabaseController.database.Ocenljivosti)
                 {
                     if(o.ID == i)
                     {
@@ -28,7 +26,8 @@ namespace muzickeStolice.Controller
                 {
                     Ocenljivo o = new Ocenljivo();
                     o.ID = i;
-                    identifikatori.Add(o);
+                    DatabaseController.database.Ocenljivosti.Add(o);
+                    DatabaseController.database.SaveChanges();
                     return o;
                 }
             }
