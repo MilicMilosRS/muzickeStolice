@@ -41,6 +41,21 @@ namespace muzickeStolice.View
             tbPrezime.Text = o.Prezime;
             tbBiografija.Text = o.Biografija;
             datumRodjenjaPicker.SelectedDate = new DateTime(o.DatumRodjenja, new TimeOnly(0));
+
+            foreach (Bend b in BendController.GetBendoviSaOsobom(osobaId))
+            {
+                Label bendLabel = new Label();
+                bendLabel.Content = b.Naziv;
+                bendLabel.Cursor = Cursors.Hand;
+                bendLabel.Foreground = Brushes.Blue;
+                bendLabel.MouseDown += (i, m) =>
+                {
+                    BendDetalji bd = new BendDetalji(b.Id);
+                    bd.Show();
+                };
+                spBendovi.Children.Add(bendLabel);
+            }
+
         }
     }
 }

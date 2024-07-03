@@ -60,5 +60,17 @@ namespace muzickeStolice.Controller
 
             return sviBendovi;
         }
+
+        static public List<Bend> GetBendoviSaOsobom(int osobaId)
+        {
+            List<Bend> bendovi = new List<Bend>();
+
+            foreach(Bend b in DatabaseController.database.Bendovi.Include(b => b.clanovi))
+                foreach (Osoba o in b.clanovi)
+                    if (o.ID == osobaId)
+                        bendovi.Add(b);
+
+            return bendovi;
+        }
     }
 }

@@ -8,14 +8,15 @@
         Title="BendDetalji" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition/>
+            <RowDefinition Height="247*"/>
+            <RowDefinition Height="187*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="210*"/>
             <ColumnDefinition Width="327*"/>
             <ColumnDefinition Width="263*"/>
         </Grid.ColumnDefinitions>
-        <ScrollViewer>
+        <ScrollViewer Grid.RowSpan="2">
             <StackPanel Name="spSlike"/>
         </ScrollViewer>
         <Label Grid.Column="1" Content="Naziv: " HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top"/>
@@ -24,9 +25,16 @@
         <TextBox Name="tbOpis" IsEnabled="False" Grid.Column="1" HorizontalAlignment="Left" Margin="21,74,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="154" Height="165"/>
         <Label Grid.Column="1" Content="Datum osnivanja: " HorizontalAlignment="Left" Margin="10,23,0,0" VerticalAlignment="Top"/>
         <DatePicker Name="datumOsnivanjaPicker" IsEnabled="False" Grid.Column="1" HorizontalAlignment="Left" Margin="124,27,0,0" VerticalAlignment="Top"/>
-        <StackPanel Name="spClanovi" Grid.Column="2">
-            <Label Content="Clanovi benda:"/>
-        </StackPanel>
+        <ScrollViewer Grid.Column="1" Grid.Row="1">
+            <StackPanel Name="spClanovi">
+                <Label Content="Clanovi benda:"/>
+            </StackPanel>
+        </ScrollViewer>
+        <ScrollViewer Grid.Column="2" Grid.RowSpan="2">
+            <StackPanel Name="spDela">
+                <Label Content="Dela benda:"/>
+            </StackPanel>
+        </ScrollViewer>
 
     </Grid>
 </Window>
