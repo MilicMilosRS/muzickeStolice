@@ -10,8 +10,6 @@ namespace muzickeStolice.View
         public Login()
         {
             InitializeComponent();
-            BendDetalji bd = new BendDetalji(10);
-            bd.Show();
         }
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
