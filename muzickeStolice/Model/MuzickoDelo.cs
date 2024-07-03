@@ -39,7 +39,7 @@ namespace muzickeStolice.Model
 
         private ICollection<Izvodjac> izvodjaci;
 
-        public ICollection<string> slikeLinkovi { get; set; }
+        public IList<string> slikeLinkovi { get; set; }
         public virtual ICollection<Izvodjac> Izvodjaci
         {
             get { return izvodjaci; }

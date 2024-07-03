@@ -96,5 +96,28 @@ namespace muzickeStolice.Controller
             return sortedAlbums;
         }
 
+        static public List<MuzickoDelo> GetDelaOdBenda(int bendId)
+        {
+            List<MuzickoDelo> dela = new List<MuzickoDelo>();
+
+            foreach (MuzickoDelo md in DatabaseController.database.MuzickaDela.Include(m => m.Izvodjaci))
+                foreach (Izvodjac i in md.Izvodjaci)
+                    if (i.ID == bendId)
+                        dela.Add(md);
+
+            return dela;
+        }
+
+        static public List<MuzickoDelo> GetDelaOdOsobe(int osobaId)
+        {
+            List<MuzickoDelo> dela = new List<MuzickoDelo>();
+
+            foreach (MuzickoDelo md in DatabaseController.database.MuzickaDela.Include(m => m.Izvodjaci))
+                foreach (Izvodjac i in md.Izvodjaci)
+                    if (i.ID == osobaId)
+                        dela.Add(md);
+
+            return dela;
+        }
     }
 }

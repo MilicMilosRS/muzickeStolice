@@ -6,6 +6,7 @@ namespace muzickeStolice.Controller
 {
     static public class KorisnikController
     {
+        static public Korisnik? Ulogovani;
         static public Korisnik? Read(string email)
         {
             foreach (Korisnik k in DatabaseController.database.Korisnici)
@@ -57,7 +58,10 @@ namespace muzickeStolice.Controller
         {
             Korisnik? k = Read(email);
             if (k != null && k.Lozinka == lozinka)
+            {
+                Ulogovani = k;
                 return k;
+            }
             return null;
         }
     static private List<Korisnik> FlattenAndSortScoreMap(Dictionary<int, List<Korisnik>> scoreMap)

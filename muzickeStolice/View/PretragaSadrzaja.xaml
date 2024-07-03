@@ -22,9 +22,9 @@
         <ScrollViewer Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" Grid.RowSpan="1">
             <StackPanel>
                 <Label Content="Osobe:"/>
-                <DataGrid Name="dgOsobe"/>
+                <DataGrid SelectionUnit="FullRow" SelectedCellsChanged="dgOsobe_SelectedCellsChanged"  Name="dgOsobe"/>
                 <Label Content="Bendovi:"/>
-                <DataGrid Name="dgBendovi"/>
+                <DataGrid SelectionUnit="FullRow" SelectedCellsChanged="dgBendovi_SelectedCellsChanged"  Name="dgBendovi"/>
             </StackPanel>
         </ScrollViewer>
         <Button Name="bDetalji" Grid.Column="2" Content="Detalji" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Center" Width="95" Click="bDetalji_Click"/>

@@ -23,7 +23,8 @@ namespace muzickeStolice.View
             {
                 if (user.Tip == TipKorisnika.Obican)
                 {
-
+                    PretragaSadrzaja ps = new PretragaSadrzaja();
+                    ps.Show();
                 }  else if(user.Tip == TipKorisnika.Urednik)
                 {
 

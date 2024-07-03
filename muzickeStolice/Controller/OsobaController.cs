@@ -68,5 +68,23 @@ namespace muzickeStolice.Controller
 
             return sveOsobe;
         }
+
+        static public List<Osoba> GetOsobeNaDelu(int deloId)
+        {
+            List<Osoba> osobe = new List<Osoba>();
+
+            MuzickoDelo? md = MuzickoDeloController.Read(deloId);
+            if(md == null)
+                return osobe;
+
+            foreach(Izvodjac i in md.Izvodjaci)
+            {
+                Osoba? o = Read(i.ID);
+                if (o != null)
+                    osobe.Add(o);
+            }
+
+            return osobe;
+        }
     }
 }

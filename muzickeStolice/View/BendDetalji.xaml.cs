@@ -43,8 +43,24 @@ namespace muzickeStolice.View
                 {
                     OsobaDetalji od = new OsobaDetalji(o.ID);
                     od.Show();
+                    this.Close();
                 };
                 spClanovi.Children.Add(clanLabel);
+            }
+
+            foreach (MuzickoDelo md in MuzickoDeloController.GetDelaOdBenda(bendId))
+            {
+                Label deloLabel = new Label();
+                deloLabel.Content = md.Naziv;
+                deloLabel.Cursor = Cursors.Hand;
+                deloLabel.Foreground = Brushes.Blue;
+                deloLabel.MouseDown += (i, m) =>
+                {
+                    MuzickoDeloDetalji mdd = new MuzickoDeloDetalji(md.Id);
+                    mdd.Show();
+                    this.Close();
+                };
+                spDela.Children.Add(deloLabel);
             }
 
             foreach (string url in b.slikeLinkovi)

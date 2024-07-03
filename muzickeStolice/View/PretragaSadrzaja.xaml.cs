@@ -49,6 +49,29 @@ namespace muzickeStolice.View
 
         private void bDetalji_Click(object sender, RoutedEventArgs e)
         {
+            if(dgOsobe.SelectedItem != null)
+            {
+                Osoba o = (Osoba)dgOsobe.SelectedItem;
+                OsobaDetalji od = new OsobaDetalji(o.ID);
+                od.Show();
+            }
+            else if(dgBendovi.SelectedItem != null)
+            {
+                Bend b = (Bend)dgBendovi.SelectedItem;
+                BendDetalji bd = new BendDetalji(b.Id);
+                bd.Show();
+            }
+        }
+
+        private void dgOsobe_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
+        {
+            dgBendovi.UnselectAll();
+
+        }
+
+        private void dgBendovi_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
+        {
+            dgOsobe.UnselectAll();
 
         }
     }

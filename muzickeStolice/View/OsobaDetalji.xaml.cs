@@ -52,10 +52,25 @@ namespace muzickeStolice.View
                 {
                     BendDetalji bd = new BendDetalji(b.Id);
                     bd.Show();
+                    this.Close();
                 };
                 spBendovi.Children.Add(bendLabel);
             }
 
+            foreach (MuzickoDelo md in MuzickoDeloController.GetDelaOdOsobe(osobaId))
+            {
+                Label deloLabel = new Label();
+                deloLabel.Content = md.Naziv;
+                deloLabel.Cursor = Cursors.Hand;
+                deloLabel.Foreground = Brushes.Blue;
+                deloLabel.MouseDown += (i, m) =>
+                {
+                    MuzickoDeloDetalji mdd = new MuzickoDeloDetalji(md.Id);
+                    mdd.Show();
+                    this.Close();
+                };
+                spDela.Children.Add(deloLabel);
+            }
         }
     }
 }

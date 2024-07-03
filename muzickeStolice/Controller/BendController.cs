@@ -72,5 +72,23 @@ namespace muzickeStolice.Controller
 
             return bendovi;
         }
+
+        static public List<Bend> GetBendoviNaDelu(int deloId)
+        {
+            List<Bend> bendovi = new List<Bend>();
+
+            MuzickoDelo? md = MuzickoDeloController.Read(deloId);
+            if (md == null)
+                return bendovi;
+
+            foreach(Izvodjac i in md.Izvodjaci)
+            {
+                Bend? b = Read(i.ID);
+                if (b != null)
+                    bendovi.Add(b);
+            }
+
+            return bendovi;
+        }
     }
 }
