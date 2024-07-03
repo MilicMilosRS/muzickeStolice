@@ -56,5 +56,12 @@ namespace muzickeStolice.Controller
                 return;
             _data.Remove(k);
         }
+        static public Korisnik? Login(string email, string lozinka)
+        {
+            Korisnik? k = Read(email);
+            if (k != null && k.Lozinka == lozinka)
+                return k;
+            return null;
+        }
     }
 }
