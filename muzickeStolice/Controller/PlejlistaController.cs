@@ -70,5 +70,62 @@ namespace muzickeStolice.Controller
                 return;
             _data.Remove(p);
         }
+        static public List<Plejlista> getKorisnikPlejliste(string autorEmail)
+        {
+            Korisnik? autor = KorisnikController.Read(autorEmail);
+            if (autor == null)
+                throw new ArgumentException("Ne postoji korisnik sa tim mejlom");
+
+            List<Plejlista> korisnikovePlejliste = _data.Where(p => p.Autor.Email == autorEmail).ToList();
+            return korisnikovePlejliste;
+        }
+
+        static public void AddToPlaylist(int playlistID, int muzickoDelo)
+        {
+            Plejlista p = Read(playlistID);
+            MuzickoDelo md = MuzickoDeloController.Read(muzickoDelo);
+            p.Muzika.Add(md);
+        }
+
+        static public void RatePlaylist(int playlistId, int vrednost, string autorEmail)
+        {
+            Plejlista? playlist = Read(playlistId);
+            if (playlist == null)
+                throw new ArgumentException("Plejlista nije pronadjena");
+
+            Ocena? ocena = OcenaController.GetOcena(playlist.ID, autorEmail);
+            if (ocena != null)
+            {
+                ocena.Vrednost = vrednost;
+            }
+            else
+            {
+                OcenaController.Create(autorEmail, new Ocenljivo { ID = playlist.ID }, vrednost);
+            }
+        }
+
+        static public List<Plejlista> GetSortedPlaylistsByRating()
+        {
+            List<Plejlista> playlistsWithRatings = new List<Plejlista>();
+
+            foreach (var playlist in _data)
+            {
+                var ocene = OcenaController.GetOcenasForOcenljivo(playlist.ID);
+                if (ocene.Count > 0)
+                {
+                    playlistsWithRatings.Add(playlist);
+                }
+            }
+
+            playlistsWithRatings.Sort((x, y) =>
+            {
+                double avgX = OcenaController.GetOcenasForOcenljivo(x.ID).Average(o => o.Vrednost);
+                double avgY = OcenaController.GetOcenasForOcenljivo(y.ID).Average(o => o.Vrednost);
+                return avgY.CompareTo(avgX);
+            });
+
+            return playlistsWithRatings;
+        }
+
     }
 }

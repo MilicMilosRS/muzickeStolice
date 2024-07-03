@@ -26,7 +26,6 @@ namespace muzickeStolice.Controller
             var userTuple = _temporaryUsers.Find(u => u.User.Email == email && u.VerificationCode == verificationCode);
             if (userTuple != default)
             {
-                KorisnikController.Create(userTuple.User.Email, userTuple.User.KorisnickoIme, userTuple.User.Lozinka, userTuple.User.Tip);
                 _temporaryUsers.Remove(userTuple);
                 return true;
             }
