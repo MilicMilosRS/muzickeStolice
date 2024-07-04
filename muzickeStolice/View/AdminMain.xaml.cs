@@ -1,4 +1,7 @@
-﻿using System.Windows;
+﻿using System.Linq;
+using System.Windows;
+using muzickeStolice.Controller;
+using muzickeStolice.Model;
 
 namespace muzickeStolice.View
 {
@@ -9,10 +12,22 @@ namespace muzickeStolice.View
             InitializeComponent();
         }
 
-        private void CreateDeloButton_Click(object sender, RoutedEventArgs e)
+        private void MuzickiBandButton_Click(object sender, RoutedEventArgs e)
         {
-            CreateMuzickoDeloWindow createMuzickoDeloWindow = new CreateMuzickoDeloWindow();
-            createMuzickoDeloWindow.ShowDialog();
+            AdminMuzickiBend bendWindow = new AdminMuzickiBend();
+            bendWindow.ShowDialog();
+        }
+
+        private void MuzickoDeloButton_Click(object sender, RoutedEventArgs e)
+        {
+            AdminMuzickoDelo deloWindow = new AdminMuzickoDelo();
+            deloWindow.ShowDialog();
+        }
+
+        private void OsobaButton_Click(object sender, RoutedEventArgs e)
+        {
+            AdminOsoba osobaWindow = new AdminOsoba();
+            osobaWindow.ShowDialog();
         }
     }
 }

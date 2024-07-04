@@ -11,8 +11,8 @@ namespace muzickeStolice.Model
         public Izdanje() { }
         public int Id
         {
-            get { return Ocenljivo.ID; }
-            set { Ocenljivo.ID = value; }
+            get;
+            set;
         }
         public Ocenljivo Ocenljivo { get; set; }
 
@@ -35,6 +35,7 @@ namespace muzickeStolice.Model
         public Izdanje(Ocenljivo id, int deloID, TipIzdanja tip, DateOnly datumIzdanja)
         {
             Ocenljivo = id;
+            Id = Ocenljivo.ID;
             this.deloID = deloID;
             this.tip = tip;
             this.datumIzdanja = datumIzdanja;

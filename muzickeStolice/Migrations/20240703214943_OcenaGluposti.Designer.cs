@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using muzickeStolice.Data;
@@ -11,9 +12,11 @@ using muzickeStolice.Data;
 namespace muzickeStolice.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240703214943_OcenaGluposti")]
+    partial class OcenaGluposti
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -340,13 +343,6 @@ namespace muzickeStolice.Migrations
                     b.Property<string>("autorEmail")
                         .HasColumnType("text");
 
-                    b.Property<string>("OcenaautorEmail")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<int>("OcenaprimalacId")
-                        .HasColumnType("integer");
-
                     b.Property<bool>("Prihvacena")
                         .HasColumnType("boolean");
 
@@ -355,8 +351,6 @@ namespace muzickeStolice.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("primalacId", "autorEmail");
-
-                    b.HasIndex("OcenaprimalacId", "OcenaautorEmail");
 
                     b.ToTable("Recenzije");
                 });
@@ -481,17 +475,6 @@ namespace muzickeStolice.Migrations
                         .HasForeignKey("ZanrNaziv");
 
                     b.Navigation("Zanr");
-                });
-
-            modelBuilder.Entity("muzickeStolice.Model.Recenzija", b =>
-                {
-                    b.HasOne("muzickeStolice.Model.Ocena", "Ocena")
-                        .WithMany()
-                        .HasForeignKey("OcenaprimalacId", "OcenaautorEmail")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Ocena");
                 });
 
             modelBuilder.Entity("muzickeStolice.Model.Bend", b =>

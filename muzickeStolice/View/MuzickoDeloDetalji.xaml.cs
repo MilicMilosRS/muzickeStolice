@@ -127,5 +127,17 @@ namespace muzickeStolice.View
                     OcenaController.Update(KorisnikController.Ulogovani.Email, delo.Ocenljivo, dto.Vrednost);
             }
         }
+
+        private void bMojaRecnzija_Click(object sender, RoutedEventArgs e)
+        {
+            Ocena? ocena = OcenaController.Read(KorisnikController.Ulogovani.Email, delo.Ocenljivo);
+            if(ocena == null)
+            {
+                MessageBox.Show("Morate prvo oceniti delo");
+                return;
+            }
+            RecenzijaCRUD r = new RecenzijaCRUD(ocena);
+            r.Show();
+        }
     }
 }

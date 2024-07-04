@@ -18,24 +18,32 @@ namespace muzickeStolice.Controller
             return null;
         }
 
-        static public Bend Create(string naziv, string opis, DateOnly datumOsnivanja)
+        public static Bend Create(string naziv, string opis, DateOnly datumOsnivanja, List<Osoba> clanovi)
         {
-            Bend b = new Bend(IzvodjacController.GenerateID(), naziv, opis, datumOsnivanja);
-            DatabaseController.database.Bendovi.Add(b);
+            Bend bend = new Bend()
+            {
+                Naziv = naziv,
+                Opis = opis,
+                DatumOsnivanja = datumOsnivanja,
+                clanovi = clanovi
+            };
+            DatabaseController.database.Bendovi.Add(bend);
             DatabaseController.database.SaveChanges();
-            return b;
+
+            return bend;
         }
 
-        static public void Update(int id, string naziv, string opis, DateOnly datumOsnivanja)
+        public static void Update(int id, string naziv, string opis, DateOnly datumOsnivanja, List<Osoba> clanovi)
         {
-            Bend? b = Read(id);
-            if (b == null)
-                return;
-
-            b.Naziv = naziv;
-            b.Opis = opis;
-            b.DatumOsnivanja = datumOsnivanja;
-            DatabaseController.database.SaveChanges();
+            Bend bend = DatabaseController.database.Bendovi.Include(b => b.clanovi).FirstOrDefault(b => b.Id == id);
+            if (bend != null)
+            {
+                bend.Naziv = naziv;
+                bend.Opis = opis;
+                bend.DatumOsnivanja = datumOsnivanja;
+                bend.clanovi = clanovi;
+                DatabaseController.database.SaveChanges();
+            }
         }
 
         static public void Delete(int id)

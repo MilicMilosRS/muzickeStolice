@@ -32,6 +32,7 @@
         </ScrollViewer>
         <ComboBox Name="cbOcena" Grid.Column="1" HorizontalAlignment="Left" Margin="81,201,0,0" VerticalAlignment="Top" Width="120"/>
         <Label Grid.Column="1" Content="Vasa ocena:" HorizontalAlignment="Left" Margin="10,199,0,0" VerticalAlignment="Top"/>
+        <Button Name="bMojaRecnzija" Grid.Column="1" Content="Moja recenzija" HorizontalAlignment="Left" Margin="216,201,0,0" VerticalAlignment="Top" Width="100" Grid.ColumnSpan="2" Click="bMojaRecnzija_Click"/>
 
     </Grid>
 </Window>
