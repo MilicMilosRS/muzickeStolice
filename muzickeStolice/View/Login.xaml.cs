@@ -19,10 +19,8 @@ namespace muzickeStolice.View
 
             Korisnik? user = KorisnikController.Login(email, password);
 
-            if (user == null)
+            if(user == null)
                 MessageBox.Show("Email ili sifra nisu tacni");
-            else
-                this.Close();
         }
 
         private void RegisterButton_Click(object sender, RoutedEventArgs e)
