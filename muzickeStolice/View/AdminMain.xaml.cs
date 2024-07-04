@@ -10,34 +10,24 @@ namespace muzickeStolice.View
         public AdminMain()
         {
             InitializeComponent();
-            LoadMuzickaDela();
         }
 
-        private void LoadMuzickaDela()
+        private void MuzickiBandButton_Click(object sender, RoutedEventArgs e)
         {
-            var muzickaDela = DatabaseController.database.MuzickaDela.ToList();
-            MuzickaDelaDataGrid.ItemsSource = muzickaDela;
+            AdminMuzickiBend bendWindow = new AdminMuzickiBend();
+            bendWindow.ShowDialog();
         }
 
-        private void CreateDeloButton_Click(object sender, RoutedEventArgs e)
+        private void MuzickoDeloButton_Click(object sender, RoutedEventArgs e)
         {
-            CreateMuzickoDeloWindow createWindow = new CreateMuzickoDeloWindow();
-            createWindow.ShowDialog();
-            LoadMuzickaDela();
+            AdminMuzickoDelo deloWindow = new AdminMuzickoDelo();
+            deloWindow.ShowDialog();
         }
 
-        private void EditDeloButton_Click(object sender, RoutedEventArgs e)
+        private void OsobaButton_Click(object sender, RoutedEventArgs e)
         {
-            if (MuzickaDelaDataGrid.SelectedItem is MuzickoDelo selectedDelo)
-            {
-                EditMuzickoDeloWindow editWindow = new EditMuzickoDeloWindow(selectedDelo);
-                editWindow.ShowDialog();
-                LoadMuzickaDela();
-            }
-            else
-            {
-                MessageBox.Show("Selektujte muzicko delo da izmenite.");
-            }
+            AdminOsoba osobaWindow = new AdminOsoba();
+            osobaWindow.ShowDialog();
         }
     }
 }
