@@ -28,6 +28,9 @@
             </StackPanel>
         </ScrollViewer>
         <Button Name="bDetalji" Grid.Column="2" Content="Detalji" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Center" Width="95" Click="bDetalji_Click"/>
+        <Button Click="bLogin_Click" Name="bLogin" Content="Log in" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center" Width="86"/>
+        <Button Click="bLogout_Click" Name="bLogout" Content="Log out" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center" Width="86"/>
+        <Label Name="lLogin" Grid.Column="1" Content="" HorizontalAlignment="Right" Margin="0,5,295,0" Grid.Row="2" VerticalAlignment="Top" Width="284"/>
 
     </Grid>
 </Window>
