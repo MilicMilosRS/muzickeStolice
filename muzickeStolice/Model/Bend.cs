@@ -50,10 +50,5 @@ namespace muzickeStolice.Model
             get { return datumOsnivanja; }
             set { datumOsnivanja = value; }
         }
-    
-        public void View(IIzvodjacVisitor visitor)
-        {
-            visitor.ViewBend(this);
-        }
     }
 }

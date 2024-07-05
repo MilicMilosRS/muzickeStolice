@@ -109,6 +109,7 @@ namespace muzickeStolice.View
             cbOcena.DisplayMemberPath = "Tekst";
             cbOcena.SelectedIndex = 0;
 
+            bMojaRecnzija.Visibility = Visibility.Collapsed;
             if(KorisnikController.Ulogovani != null)
             {
                 Ocena? ocena = OcenaController.Read(KorisnikController.Ulogovani.Email, md.Ocenljivo);
@@ -116,6 +117,8 @@ namespace muzickeStolice.View
                     cbOcena.SelectedIndex = ocena.Vrednost;
                 cbOcena.IsEnabled = true;
                 cbOcena.SelectionChanged += cbOcena_SelectionChanged;
+
+                bMojaRecnzija.Visibility = Visibility.Visible;
 
                 if (KorisnikController.Ulogovani.Tip == TipKorisnika.Urednik)
                     bIzdanje.Visibility = Visibility.Visible;

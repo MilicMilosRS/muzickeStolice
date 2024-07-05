@@ -27,6 +27,7 @@ namespace muzickeStolice.View
             InitializeComponent();
             dgOsobe.ItemsSource = prikazaneOsobe;
             dgBendovi.ItemsSource = prikazaniBendovi;
+            dgDela.ItemsSource = prikazanaDela;
 
             pretraga();
             AzurirajElemente();
@@ -34,6 +35,7 @@ namespace muzickeStolice.View
 
         ObservableCollection<Osoba> prikazaneOsobe = new ObservableCollection<Osoba>();
         ObservableCollection<Bend> prikazaniBendovi = new ObservableCollection<Bend>();
+        ObservableCollection<MuzickoDelo> prikazanaDela = new ObservableCollection<MuzickoDelo>();
 
         private void AzurirajElemente()
         {
@@ -69,6 +71,10 @@ namespace muzickeStolice.View
             prikazaniBendovi.Clear();
             foreach (Bend b in bendovi)
                 prikazaniBendovi.Add(b);
+
+            foreach (MuzickoDelo md in DatabaseController.database.MuzickaDela)
+                if (md.Naziv.ToLower().Contains(tbPretraga.Text.ToLower()))
+                    prikazanaDela.Add(md);
         }
 
         private void bPretrazi_Click(object sender, RoutedEventArgs e)
@@ -90,18 +96,24 @@ namespace muzickeStolice.View
                 BendDetalji bd = new BendDetalji(b.Id);
                 bd.Show();
             }
+            else if(dgDela.SelectedItem != null)
+            {
+                MuzickoDelo md = (MuzickoDelo)dgDela.SelectedItem;
+                MuzickoDeloDetalji mdd = new MuzickoDeloDetalji(md.Id);
+                mdd.Show();
+            }
         }
 
         private void dgOsobe_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
         {
             dgBendovi.UnselectAll();
-
+            dgDela.UnselectAll();
         }
 
         private void dgBendovi_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
         {
             dgOsobe.UnselectAll();
-
+            dgDela.UnselectAll();
         }
 
         private void bLogin_Click(object sender, RoutedEventArgs e)
@@ -139,6 +151,12 @@ namespace muzickeStolice.View
         {
             Glasanje g = new Glasanje();
             g.Show();
+        }
+
+        private void dgDela_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
+        {
+            dgBendovi.UnselectAll();
+            dgOsobe.UnselectAll();
         }
     }
 }

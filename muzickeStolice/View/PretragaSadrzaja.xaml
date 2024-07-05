@@ -25,6 +25,8 @@
                 <DataGrid SelectionUnit="FullRow" SelectedCellsChanged="dgOsobe_SelectedCellsChanged"  Name="dgOsobe"/>
                 <Label Content="Bendovi:"/>
                 <DataGrid SelectionUnit="FullRow" SelectedCellsChanged="dgBendovi_SelectedCellsChanged"  Name="dgBendovi"/>
+                <Label Content="Muzicka dela:"/>
+                <DataGrid SelectionUnit="FullRow" SelectedCellsChanged="dgDela_SelectedCellsChanged"  Name="dgDela"/>
             </StackPanel>
         </ScrollViewer>
         <Button Name="bDetalji" Grid.Column="2" Content="Detalji" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Center" Width="95" Click="bDetalji_Click"/>
