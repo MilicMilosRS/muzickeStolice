@@ -45,6 +45,13 @@ namespace muzickeStolice.Model
         }
 
         private bool prikaziOcene;
+        public bool PrikaziOcene
+        {
+            get { return prikaziOcene; }
+            set { prikaziOcene = value; }
+        }
+
+        public List<String> slikeLinkovi { get; set; }
 
         public Profil(Korisnik korisnik, string ime, string prezime)
         {
@@ -53,13 +60,9 @@ namespace muzickeStolice.Model
             this.prezime = prezime;
             this.prikaziRecenzije = false;
             this.prikaziOcene = false;
+            slikeLinkovi = new List<string>();
         }
 
-        public bool PrikaziOcene
-        {
-            get { return prikaziOcene; }
-            set { prikaziOcene = value; }
-        }
 
 
     }

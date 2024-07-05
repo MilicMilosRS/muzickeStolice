@@ -55,10 +55,5 @@ namespace muzickeStolice.Model
             get { return datumRodjenja; }
             set { datumRodjenja = value; }
         }
-
-        public void View(IIzvodjacVisitor visitor)
-        {
-            visitor.ViewOsoba(this);
-        }
     }
 }

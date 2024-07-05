@@ -12,8 +12,8 @@ namespace muzickeStolice.Controller
     {
         static public Izvodjenje? Read(int id)
         {
-            foreach (Izvodjenje i in DatabaseController.database.Izvodjenja.Include(i => i.Ocenljivo))
-                if (i.Ocenljivo.ID == id)
+            foreach (Izvodjenje i in DatabaseController.database.Izvodjenja.Include(i => i.Delo))
+                if (i.Delo.ID == id)
                     return i;
             return null;
         }

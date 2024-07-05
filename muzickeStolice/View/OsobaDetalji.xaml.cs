@@ -29,8 +29,7 @@ namespace muzickeStolice.View
             Osoba? os = OsobaController.Read(osobaId);
             if (os == null)
                 this.Close();
-            else
-                o = os;
+            o = os;
 
             if (o.SlikaUrl != null && o.SlikaUrl != "")
                 slika.Source = new BitmapImage(new Uri(o.SlikaUrl));

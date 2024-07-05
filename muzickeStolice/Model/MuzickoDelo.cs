@@ -10,8 +10,8 @@ namespace muzickeStolice.Model
     {
         public MuzickoDelo() { }
 
-
         public int Id { get; set; }
+
         public Ocenljivo Ocenljivo { get; set; }
 
         private string naziv;

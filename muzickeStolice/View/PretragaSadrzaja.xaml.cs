@@ -42,12 +42,18 @@ namespace muzickeStolice.View
                 bLogin.Visibility = Visibility.Visible;
                 bLogout.Visibility = Visibility.Collapsed;
                 lLogin.Content = "Niste ulogovani";
+                bAdmin.Visibility = Visibility.Collapsed;
+                bGlasanje.Visibility = Visibility.Collapsed;
             }
             else
             {
                 bLogin.Visibility = Visibility.Collapsed;
                 bLogout.Visibility = Visibility.Visible;
+                bGlasanje.Visibility = Visibility.Visible;
                 lLogin.Content = "Ulogovani kao: " + KorisnikController.Ulogovani.Email;
+                if (KorisnikController.Ulogovani.Tip == TipKorisnika.Urednik ||
+                    KorisnikController.Ulogovani.Tip == TipKorisnika.Admin)
+                    bAdmin.Visibility = Visibility.Visible;
             }
             UpdateLayout();
         }
@@ -109,6 +115,30 @@ namespace muzickeStolice.View
         {
             KorisnikController.Ulogovani = null;
             AzurirajElemente();
+        }
+
+        private void bAdmin_Click(object sender, RoutedEventArgs e)
+        {
+            Korisnik? k = KorisnikController.Ulogovani;
+            if(k != null)
+            {
+                if(k.Tip == TipKorisnika.Admin)
+                {
+                    AdminMain am = new AdminMain();
+                    am.ShowDialog();
+                }
+                else if (k.Tip == TipKorisnika.Urednik)
+                {
+                    UrednikMain um = new UrednikMain();
+                    um.ShowDialog();
+                }
+            }
+        }
+
+        private void bGlasanje_Click(object sender, RoutedEventArgs e)
+        {
+            Glasanje g = new Glasanje();
+            g.Show();
         }
     }
 }

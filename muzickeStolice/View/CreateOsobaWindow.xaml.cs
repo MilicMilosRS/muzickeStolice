@@ -26,13 +26,8 @@ namespace muzickeStolice.View
                 return;
             }
 
-            Izvodjac izvodjac = new Izvodjac();
-            Osoba newOsoba = new Osoba(izvodjac, ime, prezime, biografija, datumRodjenja)
-            {
-                SlikaUrl = slikaUrl
-            };
-
-            DatabaseController.database.Osobe.Add(newOsoba);
+            Osoba o = OsobaController.Create(ime, prezime, biografija, datumRodjenja, slikaUrl);
+            o.SlikaUrl = slikaUrl;
             DatabaseController.database.SaveChanges();
 
             MessageBox.Show("Osoba je uspesno napravljena");

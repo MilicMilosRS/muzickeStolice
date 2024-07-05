@@ -34,8 +34,7 @@ namespace muzickeStolice.View
 
             var slikeLinkovi = slikeLinkoviText.Split(',').ToList();
 
-            Bend newBend = BendController.Create(naziv, opis, datumOsnivanja, selectedClanovi);
-            newBend.slikeLinkovi = slikeLinkovi;
+            Bend newBend = BendController.Create(naziv, opis, datumOsnivanja, selectedClanovi,slikeLinkovi);
 
             MessageBox.Show("Bend created successfully!");
             this.Close();

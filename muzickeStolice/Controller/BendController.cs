@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using muzickeStolice.Migrations;
 using muzickeStolice.Model;
 using System;
 using System.Collections.Generic;
@@ -18,15 +19,11 @@ namespace muzickeStolice.Controller
             return null;
         }
 
-        public static Bend Create(string naziv, string opis, DateOnly datumOsnivanja, List<Osoba> clanovi)
+        public static Bend Create(string naziv, string opis, DateOnly datumOsnivanja, List<Osoba> clanovi, List<string> slike)
         {
-            Bend bend = new Bend()
-            {
-                Naziv = naziv,
-                Opis = opis,
-                DatumOsnivanja = datumOsnivanja,
-                clanovi = clanovi
-            };
+            Bend bend = new Bend(IzvodjacController.GenerateID(), naziv, opis, datumOsnivanja);
+            bend.slikeLinkovi = slike;
+            bend.clanovi = clanovi;
             DatabaseController.database.Bendovi.Add(bend);
             DatabaseController.database.SaveChanges();
 
