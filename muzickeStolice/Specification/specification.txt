@@ -1,0 +1,55 @@
+Muzička Platforma za Pregled i Ocenjivanje
+Dobrodošli na našu sveobuhvatnu muzičku platformu koja pruža mogućnost pregleda, detaljne pretrage i ocenjivanja muzičkih izvođača i njihovih dela. Naša misija je da korisnicima omogućimo lak pristup bogatom sadržaju o raznovrsnim muzičkim delima, uz mogućnost interakcije kroz recenzije i ocene.
+
+Ključne Funkcionalnosti:
+Za Neregistrovane Korisnike:
+Neregistrovani korisnici imaju mogućnost da pregledaju profile drugih korisnika, muzičkih bendova, izvođača, bilo da su to bendovi ili solo umetnici. Međutim, nemaju mogućnost unosa novih informacija, kao što su muzička dela, bendovi, albumi ili bilo šta drugo. Da bi dobili ovu mogućnost, potrebno je da se registruju putem email-a, gde će dobiti verifikacioni kod za dalju validaciju.
+Registracija:
+Registracija novih korisnika zahteva unos osnovnih podataka kao što su ime, prezime, email adresa i lozinka.
+Validacija korisničkih naloga se vrši putem email potvrde, gde korisnici dobijaju link koji moraju kliknuti da bi aktivirali svoj nalog.
+Pregled i Pretraga:
+
+Pregled detaljnih informacija o izvođačima i muzičkim delima uključuje biografije, slike i diskografije.
+Pretraga izvođača po različitim kriterijumima kao što su ime, žanr, godina aktivnosti i drugi relevantni parametri omogućava korisnicima da lako pronađu sadržaj koji ih interesuje.
+Za Registrovane Korisnike:
+Registrovani korisnici imaju pristup svim funkcionalnostima dostupnim neregistrovanim korisnicima, ali sa dodatnim pogodnostima. Oni mogu unositi nove muzičke sadržaje, ocenjivati albume i izvođače, kao i praviti personalizovane playliste prema svojim preferencijama. Takođe, imaju mogućnost označavanja omiljenog sadržaja, što omogućava sistemu da im preporuči sličan sadržaj.
+Profilni Podaci:
+Registrovani korisnici mogu ažurirati svoje korisničke podatke, uključujući ime, prezime, email adresu i lozinku, kao i postavke profila.
+Recenzije i Ocene:
+Registrovani korisnici mogu dodavati recenzije za izvođače i muzička dela, izražavajući svoje mišljenje i ocene.
+Dodeljivanje numeričkih ocena omogućava korisnicima da rangiraju izvođače i dela prema  dogovorenom sistemu.
+Omiljeni Sadržaj:
+Registrovani korisnici mogu označavati omiljene izvođače, pesme ili albume, što im omogućava brži pristup i personalizovane preporuke zasnovane na njihovim interesovanjima.
+Pretraga:
+Svi korisnici, bilo registrovani ili neregistrovani, mogu pretraživati različite bendove, pesme, albume i sličan sadržaj, koristeći napredne filtere i kriterijume.
+Za Muzičke Urednike i Administratore:
+Muzički urednici i administratori zajedno rade na sadržaju platforme, pri čemu urednici imaju veću ulogu u kreiranju i ažuriranju sadržaja. Administratori obično postavljaju osnovu, dok urednici detaljno uređuju sadržaj. Važno je napomenuti da muzički urednik nije običan registrovani korisnik, već ga kreira isključivo administrator.
+Upravljanje Sadržajem:
+Dodavanje novih izvođača i muzičkih dela uključuje unos detaljnih biografija, slika, diskografija i drugih relevantnih informacija.
+Ažuriranje biografija, slika i tekstualnih opisa omogućava stalno osvežavanje i održavanje tačnosti informacija.
+Administracija Recenzija:
+
+Odobravanje korisničkih recenzija pre nego što postanu javno dostupne osigurava kvalitet i relevantnost sadržaja.
+Postavljanje i upravljanje internim ocenama muzičkih dela omogućava urednicima da izraze svoje stručno mišljenje.
+Za Administratore:
+Administratori imaju ključnu ulogu u upravljanju korisnicima i sadržajem na platformi. Oni mogu dodavati, ažurirati i brisati korisničke naloge, kao i pregledati statistike o posećenosti i aktivnosti na platformi. Ovo im omogućava da u određenim vremenskim periodima istaknu popularne ili visoko ocenjene albume.
+Upravljanje Korisnicima:
+Administratori mogu dodavati, ažurirati i brisati korisničke naloge, uključujući i naloge muzičkih urednika.
+Analitika i Izveštaji:
+Pregled statistika o posećenosti i aktivnosti na platformi omogućava administratorima da prate popularnost različitih izvođača i muzičkih dela.
+Generisanje izveštaja o popularnosti izvođača i muzičkih dela pomaže u identifikovanju trendova i preferencija korisnika.
+Dodatne Funkcionalnosti:
+Različiti Formati:
+Prikazivanje muzičkih dela u različitim formatima kao što su CD, online streaming, i video omogućava korisnicima da izaberu format koji im najviše odgovara.
+Prilagođavanje prikaza u zavisnosti od dostupnih formata osigurava najbolji mogući korisnički doživljaj.
+Licenciranje:
+
+Upotreba licenciranja za objavljivanje sadržaja, uz administrativno vođenje, omogućava legalnu distribuciju i zaštitu autorskih prava.
+Interakcija i Preporuke:
+Naša platforma pruža preporuke za albume, dela i izvođače na osnovu korisničkih ocena i interesovanja. Ovo omogućava korisnicima da brže i efikasnije pronađu muziku koja im se sviđa i otkriju profile slične njihovima. Na taj način, korisnici mogu dobiti notifikacije o novim objavama i zbližiti se sa ljudima sa sličnim interesovanjima.
+
+Personalizovane Preporuke:
+Preporuke bazirane na ocenama i interesovanjima korisnika omogućavaju personalizovani prikaz sadržaja na početnoj stranici.
+Personalizovani prikazi na početnoj stranici pružaju korisnicima brzi pristup sadržaju koji ih najviše zanima.
+
+Ova muzička platforma je osmišljena da korisnicima pruži bogato iskustvo istraživanja i ocenjivanja muzike, uz brojne mogućnosti za personalizaciju i interakciju sa zajednicom. Kroz detaljne preglede, napredne pretrage, i personalizovane preporuke, cilj nam je da svako pronađe muziku koja odgovara njegovom ukusu i interesovanjima, te da uživa u bogatstvu muzičkog stvaralaštva dostupnog na našoj platformi.
