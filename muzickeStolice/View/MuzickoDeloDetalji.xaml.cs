@@ -65,7 +65,7 @@ namespace muzickeStolice.View
             }
 
             List<Osoba> osobe = OsobaController.GetOsobeNaDelu(muzickoDeloId);
-            foreach(Osoba o in osobe)
+            foreach (Osoba o in osobe)
             {
                 Label clanLabel = new Label();
                 clanLabel.Content = o.Ime + " " + o.Prezime;
@@ -78,6 +78,16 @@ namespace muzickeStolice.View
                     this.Close();
                 };
                 spIzvodjaci.Children.Add(clanLabel);
+            }
+
+            List<Izdanje> izdanja = IzdanjeController.GetIzdanjaDela(md);
+            foreach (Izdanje i in izdanja)
+            {
+                Label izdanjeLabel = new Label();
+                izdanjeLabel.Content = i.DatumIzdanja.ToString() + " " + i.Tip.ToString();
+                izdanjeLabel.Cursor = Cursors.Hand;
+                izdanjeLabel.Foreground = Brushes.Blue;
+                spIzdanja.Children.Add(izdanjeLabel);
             }
 
             foreach (string url in md.slikeLinkovi)
@@ -106,6 +116,9 @@ namespace muzickeStolice.View
                     cbOcena.SelectedIndex = ocena.Vrednost;
                 cbOcena.IsEnabled = true;
                 cbOcena.SelectionChanged += cbOcena_SelectionChanged;
+
+                if (KorisnikController.Ulogovani.Tip == TipKorisnika.Urednik)
+                    bIzdanje.Visibility = Visibility.Visible;
             }
         }
 
@@ -138,6 +151,12 @@ namespace muzickeStolice.View
             }
             RecenzijaCRUD r = new RecenzijaCRUD(ocena);
             r.Show();
+        }
+
+        private void bIzdanje_Click(object sender, RoutedEventArgs e)
+        {
+            CreateIzdanje ci = new CreateIzdanje(delo);
+            ci.ShowDialog();
         }
     }
 }

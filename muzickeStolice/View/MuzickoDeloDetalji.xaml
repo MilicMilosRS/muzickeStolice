@@ -13,26 +13,32 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="259*"/>
-            <ColumnDefinition Width="290*"/>
-            <ColumnDefinition Width="251*"/>
+            <ColumnDefinition Width="264*"/>
+            <ColumnDefinition Width="277*"/>
         </Grid.ColumnDefinitions>
         <ScrollViewer Grid.RowSpan="2">
             <StackPanel Name="spSlike"/>
         </ScrollViewer>
-        <Label Grid.Column="1" Content="Naziv:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-        <TextBox Name="tbNaziv" IsEnabled="False" Grid.Column="1" HorizontalAlignment="Left" Margin="57,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label Grid.Column="1" Content="Zanr:" HorizontalAlignment="Left" Margin="10,33,0,0" VerticalAlignment="Top"/>
-        <TextBox Name="tbZanr" IsEnabled="False" Grid.Column="1" HorizontalAlignment="Left" Margin="57,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label Grid.Column="1" Content="Opis:" HorizontalAlignment="Left" Margin="10,56,0,0" VerticalAlignment="Top"/>
+        <Label Grid.Column="1" Content="Naziv:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="26" Width="42"/>
+        <TextBox Name="tbNaziv" IsEnabled="False" Grid.Column="1" HorizontalAlignment="Left" Margin="57,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="18"/>
+        <Label Grid.Column="1" Content="Zanr:" HorizontalAlignment="Left" Margin="10,33,0,0" VerticalAlignment="Top" Height="26" Width="37"/>
+        <TextBox Name="tbZanr" IsEnabled="False" Grid.Column="1" HorizontalAlignment="Left" Margin="57,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="18"/>
+        <Label Grid.Column="1" Content="Opis:" HorizontalAlignment="Left" Margin="10,56,0,0" VerticalAlignment="Top" Height="26" Width="37"/>
         <TextBox Name="tbOpis" IsEnabled="False" Grid.Column="1" HorizontalAlignment="Left" Margin="10,81,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="167" Height="110"/>
-        <ScrollViewer Grid.Column="1" Grid.Row="1">
+        <ScrollViewer Grid.Column="1" Margin="0,256,0,0" Grid.RowSpan="2">
             <StackPanel Name="spIzvodjaci">
                 <Label Content="Izvodjaci"></Label>
             </StackPanel>
         </ScrollViewer>
-        <ComboBox Name="cbOcena" Grid.Column="1" HorizontalAlignment="Left" Margin="81,201,0,0" VerticalAlignment="Top" Width="120"/>
-        <Label Grid.Column="1" Content="Vasa ocena:" HorizontalAlignment="Left" Margin="10,199,0,0" VerticalAlignment="Top"/>
-        <Button Name="bMojaRecnzija" Grid.Column="1" Content="Moja recenzija" HorizontalAlignment="Left" Margin="216,201,0,0" VerticalAlignment="Top" Width="100" Grid.ColumnSpan="2" Click="bMojaRecnzija_Click"/>
+        <ComboBox Name="cbOcena" Grid.Column="1" HorizontalAlignment="Left" Margin="81,201,0,0" VerticalAlignment="Top" Width="120" Height="22"/>
+        <Label Grid.Column="1" Content="Vasa ocena:" HorizontalAlignment="Left" Margin="10,199,0,0" VerticalAlignment="Top" Height="26" Width="72"/>
+        <Button Name="bMojaRecnzija" Grid.Column="1" Content="Moja recenzija" HorizontalAlignment="Left" Margin="216,201,0,0" VerticalAlignment="Top" Width="100" Grid.ColumnSpan="2" Click="bMojaRecnzija_Click" Height="20"/>
+        <ScrollViewer Grid.Column="2" Grid.Row="1">
+            <StackPanel Name="spIzdanja">
+                <Label Content="Izdanja:"/>
+            </StackPanel>
+        </ScrollViewer>
+        <Button Visibility="Collapsed" Name="bIzdanje" Grid.Column="2" Content="Dodaj izdanje" HorizontalAlignment="Left" Margin="158,226,0,0" VerticalAlignment="Top" Click="bIzdanje_Click"/>
 
     </Grid>
 </Window>

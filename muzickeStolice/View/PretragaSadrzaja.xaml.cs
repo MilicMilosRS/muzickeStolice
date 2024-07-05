@@ -27,13 +27,38 @@ namespace muzickeStolice.View
             InitializeComponent();
             dgOsobe.ItemsSource = prikazaneOsobe;
             dgBendovi.ItemsSource = prikazaniBendovi;
+
+            pretraga();
+            AzurirajElemente();
         }
 
         ObservableCollection<Osoba> prikazaneOsobe = new ObservableCollection<Osoba>();
         ObservableCollection<Bend> prikazaniBendovi = new ObservableCollection<Bend>();
 
+        private void AzurirajElemente()
+        {
+            if (KorisnikController.Ulogovani == null)
+            {
+                bLogin.Visibility = Visibility.Visible;
+                bLogout.Visibility = Visibility.Collapsed;
+                lLogin.Content = "Niste ulogovani";
+                bAdmin.Visibility = Visibility.Collapsed;
+                bGlasanje.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                bLogin.Visibility = Visibility.Collapsed;
+                bLogout.Visibility = Visibility.Visible;
+                bGlasanje.Visibility = Visibility.Visible;
+                lLogin.Content = "Ulogovani kao: " + KorisnikController.Ulogovani.Email;
+                if (KorisnikController.Ulogovani.Tip == TipKorisnika.Urednik ||
+                    KorisnikController.Ulogovani.Tip == TipKorisnika.Admin)
+                    bAdmin.Visibility = Visibility.Visible;
+            }
+            UpdateLayout();
+        }
 
-        private void bPretrazi_Click(object sender, RoutedEventArgs e)
+        private void pretraga()
         {
             List<Osoba> osobe = OsobaController.Filter(tbPretraga.Text, null);
             prikazaneOsobe.Clear();
@@ -44,7 +69,11 @@ namespace muzickeStolice.View
             prikazaniBendovi.Clear();
             foreach (Bend b in bendovi)
                 prikazaniBendovi.Add(b);
-        
+        }
+
+        private void bPretrazi_Click(object sender, RoutedEventArgs e)
+        {
+            pretraga();
         }
 
         private void bDetalji_Click(object sender, RoutedEventArgs e)
@@ -73,6 +102,43 @@ namespace muzickeStolice.View
         {
             dgOsobe.UnselectAll();
 
+        }
+
+        private void bLogin_Click(object sender, RoutedEventArgs e)
+        {
+            Login l = new Login();
+            l.ShowDialog();
+            AzurirajElemente();
+        }
+
+        private void bLogout_Click(object sender, RoutedEventArgs e)
+        {
+            KorisnikController.Ulogovani = null;
+            AzurirajElemente();
+        }
+
+        private void bAdmin_Click(object sender, RoutedEventArgs e)
+        {
+            Korisnik? k = KorisnikController.Ulogovani;
+            if(k != null)
+            {
+                if(k.Tip == TipKorisnika.Admin)
+                {
+                    AdminMain am = new AdminMain();
+                    am.ShowDialog();
+                }
+                else if (k.Tip == TipKorisnika.Urednik)
+                {
+                    UrednikMain um = new UrednikMain();
+                    um.ShowDialog();
+                }
+            }
+        }
+
+        private void bGlasanje_Click(object sender, RoutedEventArgs e)
+        {
+            Glasanje g = new Glasanje();
+            g.Show();
         }
     }
 }

@@ -20,9 +20,10 @@ namespace muzickeStolice.Controller
             return null;
         }
 
-        static public Osoba Create(string ime, string prezime, string biografija, DateOnly datumRodjenja)
+        static public Osoba Create(string ime, string prezime, string biografija, DateOnly datumRodjenja, string slikaurl)
         {
             Osoba o = new Osoba(IzvodjacController.GenerateID(), ime, prezime, biografija, datumRodjenja);
+            o.SlikaUrl = slikaurl;
             DatabaseController.database.Osobe.Add(o);
             DatabaseController.database.SaveChanges();
             return o;

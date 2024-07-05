@@ -119,5 +119,22 @@ namespace muzickeStolice.Controller
 
             return dela;
         }
+
+        static public List<MuzickoDelo> GetDelaIzGodine(int god)
+        {
+            List<MuzickoDelo> dela = DatabaseController.database.MuzickaDela.ToList();
+            List<MuzickoDelo> filtrirana = new List<MuzickoDelo>();
+
+            foreach (MuzickoDelo md in dela)
+            {
+                Izdanje? prvo = IzdanjeController.GetPrvoIzdanje(md);
+                if (prvo != null && prvo.DatumIzdanja.Year == god)
+                    filtrirana.Add(md);
+            }
+
+            return filtrirana;
+        }
+
+
     }
 }

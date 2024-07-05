@@ -5,10 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:muzickeStolice.View"
         mc:Ignorable="d"
-        Title="UrednikMain" Height="150" Width="355">
+        Title="UrednikMain" Height="155" Width="482">
     <Grid>
-        <Button Name="bPretraga" Content="Pretraga podataka" HorizontalAlignment="Left" Margin="38,0,0,0" VerticalAlignment="Center" Click="bPretraga_Click"/>
-        <Button x:Name="bRecenzije" Content="Pregled recenzija" HorizontalAlignment="Left" Margin="197,0,0,0" VerticalAlignment="Center" Click="bRecenzije_Click"/>
+        <Button x:Name="bOsobe" Content="Pregled osoba" HorizontalAlignment="Left" Margin="234,52,0,0" VerticalAlignment="Top" Click="bOsobe_Click"/>
+        <Button x:Name="bBendovi" Content="Pregled bendova" HorizontalAlignment="Left" Margin="127,52,0,0" VerticalAlignment="Top" Click="bBendovi_Click"/>
+        <Button x:Name="bDela" Content="Pregled dela" HorizontalAlignment="Left" Margin="44,52,0,0" VerticalAlignment="Top" Click="bDela_Click"/>
+        <Button x:Name="bRecenzije" Content="Pregled recenzija" HorizontalAlignment="Left" Margin="325,52,0,0" VerticalAlignment="Top" Click="bRecenzije_Click"/>
 
     </Grid>
 </Window>

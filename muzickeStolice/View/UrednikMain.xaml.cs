@@ -38,5 +38,26 @@ namespace muzickeStolice.View
             PregledRecenzija pr = new PregledRecenzija(rec);
             pr.Show();
         }
+
+        private void bOsobe_Click(object sender, RoutedEventArgs e)
+        {
+            AdminOsoba ao = new AdminOsoba();
+            ao.Show();
+            this.Close();
+        }
+
+        private void bBendovi_Click(object sender, RoutedEventArgs e)
+        {
+            AdminMuzickiBend ab = new AdminMuzickiBend();
+            ab.Show();
+            this.Close();
+        }
+
+        private void bDela_Click(object sender, RoutedEventArgs e)
+        {
+            AdminMuzickoDelo amd = new AdminMuzickoDelo();
+            amd.Show();
+            this.Close();
+        }
     }
 }

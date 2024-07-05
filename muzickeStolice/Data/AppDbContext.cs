@@ -34,6 +34,7 @@ namespace muzickeStolice.Data
         public DbSet<Profil> Profili { get; set; }
         public DbSet<Recenzija> Recenzije { get; set; }
         public DbSet<Zanr> Zanrovi { get; set; }
+        public DbSet<GlasZaAlbum> Glasovi { get; set; }
 
     }
 }

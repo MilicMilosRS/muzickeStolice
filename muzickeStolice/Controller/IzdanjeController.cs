@@ -48,5 +48,24 @@ namespace muzickeStolice.Controller
             DatabaseController.database.SaveChanges();
         }
 
+        static public Izdanje? GetPrvoIzdanje(MuzickoDelo md)
+        {
+            Izdanje? prvo = null;
+            foreach (Izdanje i in DatabaseController.database.Izdanja)
+                if (i.DeloID == md.Id && (prvo == null || prvo.DatumIzdanja < i.DatumIzdanja))
+                    prvo = i;
+            return prvo;
+        }
+
+        static public List<Izdanje> GetIzdanjaDela(MuzickoDelo md)
+        {
+            List<Izdanje> iz = new List<Izdanje>();
+
+            foreach (Izdanje i in DatabaseController.database.Izdanja)
+                if (i.DeloID == md.Id)
+                    iz.Add(i);
+
+            return iz;
+        }
     }
 }
